@@ -15,7 +15,6 @@ class Membros extends Model{
             cargo: Sequelize.STRING,
             telefone: Sequelize.STRING,
             administrador: Sequelize.BOOLEAN,
-            cadastro_confirmado: Sequelize.BOOLEAN,
             password_hash: Sequelize.STRING,
             password: Sequelize.VIRTUAL
         },

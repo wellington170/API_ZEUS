@@ -19,8 +19,6 @@ routes.get('/health', (req,res)=>{
 })
 routes.post('/adm/create', schemaValidator(membroSchema),ControleDeMembros.create);
 routes.get('/adm/listar', ControleDeMembros.listar);
-routes.put('/adm/confirmar/:id', ControleDeMembros.confirm);
-routes.delete('/adm/cancelar/:id', ControleDeMembros.cancel);
 routes.delete('/adm/delete/:id', ControleDeMembros.delete);
 routes.put('/adm/atualizar/:id', ControleDeMembros.update);
 module.exports=routes;
