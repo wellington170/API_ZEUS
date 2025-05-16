@@ -56,12 +56,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
         allowNull: false,
-      },
-      cadastro_confirmado: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false,
-      allowNull: false
-}
+      }
     });
   },
 

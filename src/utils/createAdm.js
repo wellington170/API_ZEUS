@@ -17,8 +17,7 @@ async function createAdm() {
       cargo: 'Administrador',
       telefone: '31999999999',
       administrador: true,
-      password_hash: senhaHash,
-      cadastro_confirmado: true,
+      password_hash: senhaHash
     });
 
     console.log('Administrador inicial criado com sucesso!');
