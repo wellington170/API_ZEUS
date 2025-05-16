@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Membros",
+  "type": "object",
+  "properties": {
+    "nome_completo": {
+      "type": "string"
+    },
+    "data_de_nascimento": {
+      "type": "string",
+      "format": "date"
+    },
+    "data_de_ingresso": {
+      "type": "string",
+      "format": "date"
+    },
+    "email_institucional": {
+      "type": "string",
+      "format": "email"
+    },
+    "genero": {
+      "type": "string"
+    },
+    "foto": {
+      "type": "string"
+    },
+    "cargo": {
+      "type": "string"
+    },
+    "telefone": {
+      "type": "string"
+    },
+    "administrador": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "nome_completo",
+    "data_de_nascimento",
+    "data_de_ingresso",
+    "email_institucional",
+    "genero",
+    "foto",
+    "cargo",
+    "telefone"
+  ]
+}
