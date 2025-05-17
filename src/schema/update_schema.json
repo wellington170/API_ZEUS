@@ -9,10 +9,6 @@
     "nome_completo": {
       "type": "string"
     },
-    "data_de_nascimento": {
-      "type": "string",
-      "format": "date"
-    },
     "data_de_ingresso": {
       "type": "string",
       "format": "date"
@@ -31,7 +27,7 @@
       "type": "string"
     },
     "administrador": {
-      "type": "boolean"
+      "type": "string"
     }
   }
 }

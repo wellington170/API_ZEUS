@@ -11,7 +11,7 @@ async function createAdm() {
       nome_completo: 'Administrador Inicial',
       data_de_nascimento: '1990-01-01',
       data_de_ingresso: new Date(),
-      email_institucional: 'adm@comp.com',
+      email_institucional: 'adm@compjunior.com.br',
       genero: 'Masculino',
       foto: 'sem_foto',
       cargo: 'Administrador',

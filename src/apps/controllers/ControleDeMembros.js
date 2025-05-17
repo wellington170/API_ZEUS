@@ -9,6 +9,7 @@ class ControleDeMembros{
             }
         });
         if(!adm.administrador) return res.status(400).json({error: "Você não tem permissão para criar um usuário"});
+
         const verifyUser=await Membros.findOne({
                 where:{
                     email_institucional: req.body.email_institucional,
@@ -17,11 +18,20 @@ class ControleDeMembros{
             if(verifyUser){
                 return res.status(400).json({message:"Membro já existe"});
             }
+
         const dataAtual=new Date();
         const user=req.body;
         if(new Date(user.data_de_ingresso)>dataAtual || new Date(user.data_de_nascimento)>dataAtual){
             return res.status(400).json({ error: "A data de ingresso ou de nascimento são inválidas." });
         }
+        if(!user.email_institucional.endsWith("@compjunior.com.br")){
+            return res.status(400).json({error: "O email deve estar no domínio da compjunior!"});
+        }
+        if (req.body.administrador === 'true') req.body.administrador = true;
+        else if (req.body.administrador === 'false') req.body.administrador = false;
+        
+        if(!req.file) return res.status(400).json({ error: "A foto é obrigatória e deve ser JPG, JPEG ou PNG com até 2MB." });
+        user.foto=req.file.filename;
         await Membros.create(req.body);
         return res.status(200).json({message: "Membro criado com sucesso!"});
     }
@@ -32,7 +42,7 @@ class ControleDeMembros{
                 id:req.userId,
             }
         });
-        if(!adm.administrador) return res.status(400).json({error: "Você não tem permissão para criar um usuário"});
+        if(!adm.administrador) return res.status(400).json({error: "Você não tem permissão para acessar todos os usuários"});
         const usuarios=await Membros.findAll({
             order:[['nome_completo', 'ASC']],
             attributes:['id', 
@@ -50,7 +60,7 @@ class ControleDeMembros{
                 id:req.userId,
             }
         });
-        if(!adm.administrador) return res.status(400).json({error: "Você não tem permissão para criar um usuário"}); 
+        if(!adm.administrador) return res.status(400).json({error: "Você não tem permissão para deletar um usuário"}); 
 
         const {id}=req.params;
         const user=await Membros.findByPk(id);
@@ -71,21 +81,24 @@ class ControleDeMembros{
                 id:req.userId,
             }
         });
-        if(!adm.administrador) return res.status(400).json({error: "Você não tem permissão para criar um usuário"}); 
+        if(!adm.administrador) return res.status(400).json({error: "Você não tem permissão para alterar um usuário"}); 
 
         const {id}=req.params;
         const user=await Membros.findByPk(id);
         if(!user)  return res.status(404).json({error: "Membro não foi criado"});
         if(id==1) return res.status(403).json({error: "Você não pode alterar o administrador inicial!"});
-
+        if(req.body.administrador==="true"||req.body.administrador=="1") req.body.administrador=true;
+        else if(req.body.administrador==="false"||req.body.administrador=="1") req.body.administrador=false;
         const{nome_completo,
             email_institucional,
             cargo,
             foto,
             telefone,
             administrador,
-            genero
+            genero,
+            habilidades
         } = req.body;
+        
         await Membros.update(
         {
             nome_completo: nome_completo || user.nome_completo,
@@ -94,7 +107,8 @@ class ControleDeMembros{
             foto: foto || user.foto,
             telefone: telefone || user.telefone,
             administrador: administrador ?? user.administrador,
-            genero: genero||user.genero
+            genero: genero||user.genero,
+            habilidades: habilidades||user.habilidades
         },
         {
             where: { id: id }

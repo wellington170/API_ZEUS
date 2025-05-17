@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Membros",
+  "type": "object",
+  "properties": {
+    "email_institucional": {
+      "type": "string",
+      "format": "email"
+    },
+    "new_password":{
+        "type": "string"
+    },
+    "confirm_password":{
+        "type":"string"
+    },
+    "codigo":{
+        "type":"string"
+    }
+  },
+  "required": ["email_institucional","new_password", "codigo","confirm_password"]
+  
+}
