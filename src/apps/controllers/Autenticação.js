@@ -17,8 +17,47 @@ class AuthenticationController{
         if(user.password_hash===null){
             return res.status(400).json({error: 'Você precisa criar a sua senha!'});
         }
+        if(user.usuario_bloqueado && ((new Date() - user.data_bloqueio)>(15*60*1000))){
+            await Membro.update(
+                {
+                usuario_bloqueado: false,
+                numero_tentativas: 0,
+                data_bloqueio: null
+                },
+                {
+                where: {id:user.id}
+                }
+            );
+        }
+        if(user.usuario_bloqueado) return res.status(403).json({error: 'Conta temporariamente bloqueada!'});
+        
         if(!await user.checkPassword(password)){
+
+            await Membro.update({
+                numero_tentativas: user.numero_tentativas+1
+            },
+            {
+                where: {id:user.id}
+            });
+            if(user.numero_tentativas>=4){
+                await Membro.update({
+                usuario_bloqueado: true,
+                data_bloqueio: new Date()
+                },
+                {
+                where: {id:user.id}
+                });
+            }
             return res.status(401).json({error: 'Senha incorreta!'});
+        }
+
+        if(user.numero_tentativas!=0){
+            await Membro.update({
+                numero_tentativas: 0
+            },
+            {   
+                where:{id:user.id}
+            });
         }
         const {id, nome_completo}=user;
         const {iv, content}= encrypt(id);

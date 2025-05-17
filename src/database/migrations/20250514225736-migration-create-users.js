@@ -60,6 +60,20 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
         allowNull: false,
+      },
+      numero_tentativas:{
+        type: Sequelize.INTEGER,
+        defaultValue: 0,
+        allowNull: false
+      },
+      usuario_bloqueado:{
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false,        
+      },
+      data_bloqueio:{
+        type: Sequelize.DATE,
+        allowNull: true
       }
     });
   },
