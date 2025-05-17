@@ -48,6 +48,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
+      habilidades:{
+        type: Sequelize.STRING,
+        allowNull:true,
+      },
         password_hash:{
         type: Sequelize.STRING,
         allowNull: true,

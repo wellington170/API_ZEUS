@@ -16,6 +16,7 @@ class Membros extends Model{
             telefone: Sequelize.STRING,
             administrador: Sequelize.BOOLEAN,
             password_hash: Sequelize.STRING,
+            habilidades: Sequelize.STRING,
             password: Sequelize.VIRTUAL
         },
         {
