@@ -17,7 +17,10 @@ class Membros extends Model{
             administrador: Sequelize.BOOLEAN,
             password_hash: Sequelize.STRING,
             habilidades: Sequelize.STRING,
-            password: Sequelize.VIRTUAL
+            password: Sequelize.VIRTUAL,
+            numero_tentativas: Sequelize.INTEGER,
+            usuario_bloqueado:  Sequelize.BOOLEAN,
+            data_bloqueio: Sequelize.DATE
         },
         {
             sequelize,
