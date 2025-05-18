@@ -31,7 +31,14 @@
       "type": "string"
     },
     "administrador": {
-      "type": "boolean"
+      "type": "string"
     }
-  }
+  },
+  "required": ["nome_completo",
+  "data_de_ingresso",
+  "data_de_nascimento",
+  "email_institucional",
+  "genero",
+  "cargo",
+  "telefone"]
 }

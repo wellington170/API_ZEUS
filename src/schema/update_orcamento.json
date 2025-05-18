@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Orcamentos",
+  "type": "object",
+
+  "properties": {
+    "numero_do_orcamento": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "descricao_do_projeto": {
+      "type": "string",
+      "minLength": 5
+    },
+    "cliente": {
+      "type": "string",
+      "minLength": 1
+    },
+    "membro_responsavel_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "valor_estimado": {
+      "type": "string"
+    },
+    "custos_previstos": {
+      "type": "string"
+    },
+    "status_orcamento": {
+      "type": "string",
+      "enum": ["Em análise", "Aprovado", "Rejeitado"]
+    }
+  }
+}

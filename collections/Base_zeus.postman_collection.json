@@ -1,0 +1,520 @@
+{
+	"info": {
+		"_postman_id": "e4eb6092-84e5-4376-9122-1cab996a622a",
+		"name": "Base_zeus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44799711",
+		"_collection_link": "https://wellington-5751853.postman.co/workspace/Wellington-'s-Workspace~468a1ca3-3c22-47c3-8b08-3255e15ff00e/collection/44799711-e4eb6092-84e5-4376-9122-1cab996a622a?action=share&source=collection_link&creator=44799711"
+	},
+	"item": [
+		{
+			"name": "Administrador",
+			"item": [
+				{
+					"name": "Orçamentos",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numero_do_orcamento\":20001,\r\n  \"descricao_do_projeto\": \"Desenvolvimento de Plataforma Web para Gestão Escolar\",\r\n  \"cliente\": \"Colégio Alfa\",\r\n  \"membro_responsavel_id\": 1,\r\n  \"valor_estimado\": \"50000\",\r\n  \"custos_previstos\": \"35000\",\r\n  \"status_orcamento\": \"Em análise\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/adm/orcamento/create",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"adm",
+										"orcamento",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numero_do_orcamento\":2025001,\r\n  \"descricao_do_projeto\": \"Desenvolvimento de Plataforma Web para Gestão Escolar\",\r\n  \"cliente\": \"Colégio Alfa\",\r\n  \"membro_responsavel_id\": 4,\r\n  \"valor_estimado\": \"50000\",\r\n  \"custos_previstos\": \"35000\",\r\n  \"status_orcamento\": \"Em análise\"\r\n}"
+								},
+								"url": {
+									"raw": "{{API_URL}}/adm/orcamento/delete/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"adm",
+										"orcamento",
+										"delete",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/adm/orcamento/listar",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"adm",
+										"orcamento",
+										"listar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numero_do_orcamento\":3224243,\r\n    \"descricao_do_projeto\": \"sdfsdfsdfsd\",\r\n    \"membro_responsavel_id\":2,\r\n    \"valor_estimado\": \"3423\",\r\n    \"custos_previstos\": \"23424\",\r\n    \"status_orcamento\": \"Em análise\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/adm/orcamento/update/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"adm",
+										"orcamento",
+										"update",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Membros",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "nome_completo",
+											"value": "Wellington Costa Grilo Pereira",
+											"type": "text"
+										},
+										{
+											"key": "data_de_nascimento",
+											"value": "2006-05-05",
+											"type": "text"
+										},
+										{
+											"key": "data_de_ingresso",
+											"value": "2025-01-12",
+											"type": "text"
+										},
+										{
+											"key": "email_institucional",
+											"value": "wellington.pereira@compjunior.com.br",
+											"type": "text"
+										},
+										{
+											"key": "genero",
+											"value": "Masculino",
+											"type": "text"
+										},
+										{
+											"key": "foto",
+											"type": "file",
+											"src": "postman-cloud:///1f02eb39-aa76-4250-a9b3-731aa36f46bb"
+										},
+										{
+											"key": "cargo",
+											"value": "VPGG",
+											"type": "text"
+										},
+										{
+											"key": "telefone",
+											"value": "35998562608",
+											"type": "text"
+										},
+										{
+											"key": "administrador",
+											"value": "true",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_URL}}/adm/create",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"adm",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/adm/listar",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"adm",
+										"listar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"confirm\":true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/adm/delete/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"adm",
+										"delete",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "nome_completo",
+											"value": "Waldemiro Neto",
+											"type": "text"
+										},
+										{
+											"key": "data_de_ingresso",
+											"value": "2025-01-12",
+											"type": "text"
+										},
+										{
+											"key": "foto",
+											"type": "file",
+											"src": "postman-cloud:///1f032cf2-f1c0-4570-9b96-c800ad68a6d4"
+										},
+										{
+											"key": "genero",
+											"value": "Masculino",
+											"type": "text"
+										},
+										{
+											"key": "cargo",
+											"value": "Vendedor",
+											"type": "text"
+										},
+										{
+											"key": "telefone",
+											"value": "35999999999",
+											"type": "text"
+										},
+										{
+											"key": "administrador",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "email_institucional",
+											"value": "djwnjne@compjunior.com.br",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_URL}}/adm/atualizar/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"adm",
+										"atualizar",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email_institucional\": \"adm@compjunior.com.br\",\r\n    \"password\": \"admin123\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/login",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Primeiro login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email_institucional\": \"wellington.pereira@compjunior.com.br\",\r\n    \"password\": \"we.comp.76\",\r\n    \"confirm_password\": \"we.comp.76\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/primeiro_login",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"primeiro_login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperação de senha",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email_institucional\": \"wellington.pereira@compjunior.com.br\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/login/recuperacao_de_senha/codigo",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"login",
+								"recuperacao_de_senha",
+								"codigo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resetar senha",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email_institucional\": \"wellington.pereira@compjunior.com.br\",\r\n    \"codigo\":\"727746\",\r\n    \"new_password\":\"Wereja7702\",\r\n    \"confirm_password\":\"Wereja7702\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/login/recuperacao_de_senha/reset",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"login",
+								"recuperacao_de_senha",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{API_URL}}/health",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"health"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
