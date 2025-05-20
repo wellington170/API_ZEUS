@@ -5,8 +5,9 @@ async function verificaAdm(id){
                 id:id,
             }
         });
-        if(adm.administrador) return false;
-        else return true;
+        if(!adm) return false;
+        if(adm.administrador) return true;
+        else return false;
     }
 
 module.exports=verificaAdm;

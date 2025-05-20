@@ -4,7 +4,7 @@ const  verificaAdm=require('../../utils/verificaAdm');
 class ControleDeMembros{
     
     async create(req, res){
-        if(await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para criar um usuário"});
+        if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para criar um usuário"});
         const verifyUser=await Membros.findOne({
                 where:{
                     email_institucional: req.body.email_institucional,
@@ -33,7 +33,7 @@ class ControleDeMembros{
     }
 
     async listar(req,res){
-        if(await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para acessar todos os usuários"});
+        if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para acessar todos os usuários"});
         const usuarios=await Membros.findAll({
             order:[['nome_completo', 'ASC']],
             attributes:['id', 
@@ -46,7 +46,7 @@ class ControleDeMembros{
         return res.status(200).json({data: usuarios});
     }
     async delete(req, res){
-        if(await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para deletar um usuário"}); 
+        if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para deletar um usuário"}); 
         const {id}=req.params;
         const user=await Membros.findByPk(id);
         if(!user)  return res.status(404).json({error: "Membro não foi criado"});
@@ -68,7 +68,7 @@ class ControleDeMembros{
         return res.status(200).json({message: "Membro deletado com sucesso!"});
     }
     async update(req,res){
-        if(await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para alterar um usuário"}); 
+        if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para alterar um usuário"}); 
         const {id}=req.params;
         const user=await Membros.findByPk(id);
         if(!user)  return res.status(404).json({error: "Membro não foi criado"});
@@ -84,7 +84,9 @@ class ControleDeMembros{
             genero,
             habilidades
         } = req.body;
-        
+        if(!user.email_institucional.endsWith("@compjunior.com.br")){
+            return res.status(400).json({error: "O email deve estar no domínio da compjunior!"});
+        }
         await Membros.update(
         {
             nome_completo: nome_completo || user.nome_completo,

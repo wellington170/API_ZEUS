@@ -1,11 +1,10 @@
 const Orcamentos=require('../models/orcamento');
 const Membros=require('../models/membros');
 const verificaAdm=require('../../utils/verificaAdm');
-const orcamentos = require('../models/orcamento');
 class ControleOrcamentos{
 
     async create(req, res){
-        if(await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para criar um orçamento!"});
+        if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para criar um orçamento!"});
 
         const{numero_do_orcamento}=req.body;
         const orcamento=req.body;
@@ -33,7 +32,7 @@ class ControleOrcamentos{
     }
     async delete(req,res){
 
-        if(await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para deletar um orçamento!"});
+        if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para deletar um orçamento!"});
         const {id}=req.params;
         const orcamento=await Orcamentos.findByPk(id);
         if(!orcamento) return res.status(404).json({error: "O orçamento solicitado não existe"});
@@ -47,7 +46,7 @@ class ControleOrcamentos{
     }
        async listar(req, res){
 
-        if(await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para acessar todos os orçamentos!"});
+        if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para acessar todos os orçamentos!"});
         const orcamentos=await Orcamentos.findAll({
             order:[['id', 'DESC']],
             attributes: ['id',
@@ -62,9 +61,9 @@ class ControleOrcamentos{
         return res.status(200).json({data: orcamentos});
        }
        async update(req, res){
-        if(await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para alterar um orçamento"});
+        if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para alterar um orçamento"});
         const {id}=req.params;
-        const orcamento=await orcamentos.findByPk(id);
+        const orcamento=await Orcamentos.findByPk(id);
         if(!orcamento) return res.status(404).json({error: "O orçamento solicitado não existe"});
         
         const {numero_do_orcamento, 
