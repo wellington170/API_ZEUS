@@ -13,18 +13,27 @@ class ControleOrcamentos{
                 id:orcamento.membro_responsavel_id
             }
         });
-        if(orcamento.membro_responsavel_id===1) return res.status(400).json
-        ({error: "O admin inicial não pode ser responsável por um orçamento!"});
 
         if(!membro) return res.status(404).json({error: "Membro não foi criado"});
+        if(orcamento.membro_responsavel_id===1) return res.status(400).json
+        ({error: "O admin inicial não pode ser responsável por um orçamento!"});
         const verifyOrcamento=await Orcamentos.findOne({
             where:{
                 numero_do_orcamento: numero_do_orcamento,
             }
         });
         if(verifyOrcamento ) return res.status(400).json({error: "Número do orçamento já existe!"});
-
-        await Orcamentos.create(req.body);
+        const novoOrcamento = await Orcamentos.create(req.body);
+        await Orcamentos.update(
+            {
+                membro_responsavel:membro.nome_completo
+            },
+            {
+                where:{
+                    id:novoOrcamento.id
+                }
+            }
+    );
         return res.status(200).json({message: "Orçamento criado com sucesso!"});
     }
     async delete(req,res){
@@ -49,6 +58,7 @@ class ControleOrcamentos{
             attributes: ['id',
                 'numero_do_orcamento',
                 'descricao_do_projeto',
+                'membro_responsavel',
                 'membro_responsavel_id',
                 'valor_estimado',
                 'custos_previstos',
@@ -71,6 +81,8 @@ class ControleOrcamentos{
         }=req.body;
         const novo_responsavel =await Membros.findByPk(membro_responsavel_id);
         if(!novo_responsavel) return res.status(404).json({error: "O membro requisitado não existe!"});
+        if(membro_responsavel_id===1) return res.status(400).json
+        ({error: "O admin inicial não pode ser responsável por um orçamento!"});
         await Orcamentos.update({
             descricao_do_projeto: descricao_do_projeto||orcamento.descricao_do_projeto,
             membro_responsavel_id: membro_responsavel_id||orcamento.membro_responsavel_id,
@@ -81,6 +93,16 @@ class ControleOrcamentos{
         {
             where: {id: id}
         });
+        await Orcamentos.update(
+            {
+                membro_responsavel: novo_responsavel.nome_completo
+            },
+            {
+                where:{
+                    id:id
+                }
+            }
+        );
         return res.status(200).json({message: "Orçamento atualizado com sucesso!"});
        }
 }
