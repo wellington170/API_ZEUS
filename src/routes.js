@@ -4,7 +4,7 @@ const ControleDeMembros = require('./apps/controllers/ControleDeMembros');
 const AuthenticationController=require('./apps/controllers/Autenticação');
 const ControleOrcamentos=require('./apps/controllers/ControleOrcamentos');
 const ControleDosMembros=require('./apps/controllers/ControleDosMembros');
-
+const ControleClientes=require('./apps/controllers/ControleClientes');
 const schemaValidator=require('./apps/middlewares/schemaValidator');
 const membroSchema=require('./schema/create_membro.json');
 const loginSchema=require('./schema/login_scheme.json');
@@ -26,6 +26,7 @@ routes.put('/login/recuperacao_de_senha/reset', schemaValidator(resetSchema), Au
 
 routes.use(AuthenticationMiddleware);
 
+
 routes.put('/user/perfil', upload.single('foto'),
 schemaValidator(updatePerfilSchema),verificaErroMulter, ControleDosMembros.updateMembro);
 routes.get('/user/listarOrcamentos', ControleDosMembros.listar);
@@ -37,6 +38,11 @@ routes.get('/adm/listar', ControleDeMembros.listar);
 routes.delete('/adm/delete/:id', ControleDeMembros.delete);
 routes.put('/adm/atualizar/:id', upload.single('foto'),
 schemaValidator(updateSchema), verificaErroMulter, ControleDeMembros.update);
+
+routes.post('/adm/clientes/create', ControleClientes.create);
+routes.delete('/adm/clientes/delete/:id', ControleClientes.delete);
+routes.get('/adm/clientes/listar', ControleClientes.listar);
+routes.put('/adm/clientes/update/:id', ControleClientes.update);
 
 routes.post('/adm/orcamento/create',schemaValidator(createOrcamentoSchema), ControleOrcamentos.create);
 routes.delete('/adm/orcamento/delete/:id', ControleOrcamentos.delete);
