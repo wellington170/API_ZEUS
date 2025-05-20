@@ -15,16 +15,12 @@
     "telefone": {
       "type": "string",
       "minLength":8,
-      "maxLength": 15,
-      "pattern": "^\\+?[0-9]*$",
-      "description": "O telefone deve conter apenas números e pode começar com +"
+      "maxLength": 15
     },
     "cpf_cnpj": {
       "type": "string",
       "minLength": 11,
-      "maxLength": 14,
-      "pattern": "^(\\d{11}|\\d{14}|\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2})$",
-      "description": "O CPF deve conter 11 dígitos e o CNPJ deve conter 14 dígitos ou o formato XX.XXX.XXX/XXXX-XX"
+      "maxLength": 18
     }
   }
 }

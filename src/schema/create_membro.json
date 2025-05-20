@@ -1,3 +1,4 @@
+
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Membros",
@@ -32,9 +33,7 @@
     "telefone": {
       "type": "string",
       "minLength": 8,
-      "maxLength": 15,
-      "pattern": "^\\+?[0-9]*$",
-      "description": "O telefone deve conter apenas números e pode começar com +"
+      "maxLength": 15
     },
     "administrador": {
       "type": "string",

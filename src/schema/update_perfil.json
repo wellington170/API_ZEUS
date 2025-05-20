@@ -22,9 +22,7 @@
     "telefone": {
       "type": "string",
       "minLength": 8,
-      "maxLength": 15,
-      "pattern": "^\\+?[0-9]*$",
-      "description": "O telefone deve conter apenas números e pode começar com +"
+      "maxLength": 15
     }
   }
 }
