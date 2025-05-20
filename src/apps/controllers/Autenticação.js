@@ -115,7 +115,19 @@ class AuthenticationController{
             }
         });
         if(!user) return res.status(401).json({error: 'Email não cadastrado!'});
-
+        if(user.usuario_bloqueado && ((new Date() - user.data_bloqueio)>(15*60*1000))){
+            await Membro.update(
+                {
+                usuario_bloqueado: false,
+                numero_tentativas: 0,
+                data_bloqueio: null
+                },
+                {
+                where: {id:user.id}
+                }
+            );
+        }
+        if(user.usuario_bloqueado) return res.status(403).json({error: 'Conta temporariamente bloqueada!'});
         const code = Math.floor(100000 + Math.random() * 900000).toString();
         setResetCode(email_institucional, code);
 
