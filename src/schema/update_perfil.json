@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Membros",
+  "type": "object",
+  "properties": {
+    "habilidades":{
+      "type": "string"
+    },
+    "nome_completo": {
+      "type": "string"
+    },
+    "email_institucional": {
+      "type": "string",
+      "format": "email"
+    },
+    "genero": {
+      "type": "string"
+    },
+    "telefone": {
+      "type": "string"
+    }
+  }
+}
