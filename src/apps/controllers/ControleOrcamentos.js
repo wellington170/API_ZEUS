@@ -22,12 +22,9 @@ class ControleOrcamentos{
                 numero_do_orcamento: numero_do_orcamento,
             }
         });
-        if(verifyOrcamento ) return res.status(400).json({error: "Orçamento já existe!"});
+        if(verifyOrcamento ) return res.status(400).json({error: "Número do orçamento já existe!"});
 
         await Orcamentos.create(req.body);
-        Orcamentos.update({
-            
-        })
         return res.status(200).json({message: "Orçamento criado com sucesso!"});
     }
     async delete(req,res){
@@ -66,8 +63,7 @@ class ControleOrcamentos{
         const orcamento=await Orcamentos.findByPk(id);
         if(!orcamento) return res.status(404).json({error: "O orçamento solicitado não existe"});
         
-        const {numero_do_orcamento, 
-            descricao_do_projeto,
+        const {descricao_do_projeto,
             membro_responsavel_id,
             valor_estimado,
             custos_previstos,
