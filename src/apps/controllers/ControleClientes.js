@@ -36,26 +36,42 @@ class ControleOrcamentos{
     }
     async listar(req,res){
         if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para acessar todos os usuários"});
-        const usuarios=await Clientes.findAll({
+        const clientes=await Clientes.findAll({
             order:[['nome', 'ASC']],
             attributes:['id', 
                 'nome',
                 'email',
                 'telefone',
-                'endereco']
+                'cpf_cnpj',]
         });
-        return res.status(200).json({data: usuarios});
+        return res.status(200).json({data: clientes});
     }
     async update(req,res){
         if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para atualizar um cliente!"});
         const {id}=req.params;
         const cliente=await Clientes.findByPk(id);
         if(!cliente) return res.status(404).json({error: "Cliente não foi encontrado"});
-        await Clientes.update(req.body,{
+        const{email, telefone, nome, cpf_cnpj}=req.body;
+        if(email){
+            const verifyEmail=await Clientes.findOne({
+                where:{
+                    email: email,
+                },
+            });
+            if(verifyEmail) return res.status(400).json({error:"Email já existe"});
+        }
+        await Clientes.update(
+        {
+            nome: nome || cliente.nome,
+            email: email || cliente.email, 
+            telefone: telefone || cliente.telefone
+        },
+        {
             where:{
                 id:id
             }
         });
+        
         return res.status(200).json({message: "Cliente atualizado com sucesso!"});
     }
 }
