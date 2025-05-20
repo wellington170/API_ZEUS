@@ -72,7 +72,6 @@ class ControleOrcamentos{
         const novo_responsavel =await Membros.findByPk(membro_responsavel_id);
         if(!novo_responsavel) return res.status(404).json({error: "O membro requisitado não existe!"});
         await Orcamentos.update({
-            numero_do_orcamento: numero_do_orcamento||orcamento.numero_do_orcamento,
             descricao_do_projeto: descricao_do_projeto||orcamento.descricao_do_projeto,
             membro_responsavel_id: membro_responsavel_id||orcamento.membro_responsavel_id,
             valor_estimado: valor_estimado||orcamento.valor_estimado,

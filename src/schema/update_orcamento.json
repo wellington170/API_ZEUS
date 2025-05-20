@@ -4,10 +4,6 @@
   "type": "object",
 
   "properties": {
-    "numero_do_orcamento": {
-      "type": "integer",
-      "minimum": 1
-    },
     "descricao_do_projeto": {
       "type": "string",
       "minLength": 5
