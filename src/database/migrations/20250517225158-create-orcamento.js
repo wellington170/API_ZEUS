@@ -21,7 +21,11 @@ module.exports = {
       },
       membro_responsavel_id:{
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: 'membros', 
+          key: 'id'
+        },
       },
       valor_estimado:{
         type: Sequelize.STRING,
