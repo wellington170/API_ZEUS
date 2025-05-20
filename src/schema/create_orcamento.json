@@ -12,9 +12,9 @@
       "type": "string",
       "minLength": 5
     },
-    "cliente": {
-      "type": "string",
-      "minLength": 1
+    "cliente_id": {
+      "type": "integer",
+      "minimum": 1
     },
     "membro_responsavel_id": {
       "type": "integer",
@@ -34,7 +34,7 @@
     "required": [
     "numero_do_orcamento",
     "descricao_do_projeto",
-    "cliente",
+    "cliente_id",
     "membro_responsavel_id",
     "valor_estimado",
     "custos_previstos",

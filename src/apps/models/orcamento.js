@@ -11,6 +11,7 @@ class orcamentos extends Model{
             valor_estimado: Sequelize.STRING,
             custos_previstos: Sequelize.STRING,
             status_orcamento: Sequelize.STRING,
+            cliente: Sequelize.STRING,
             cliente_id: Sequelize.INTEGER
         },
         {

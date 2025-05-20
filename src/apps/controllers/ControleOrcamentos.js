@@ -13,7 +13,12 @@ class ControleOrcamentos{
                 id:orcamento.membro_responsavel_id
             }
         });
-
+        const cliente=await Membros.findOne({
+            where:{
+                id:orcamento.cliente_id
+            }
+        });
+        if(!cliente) return res.status(404).json({error: "Cliente não foi encontrado!"});
         if(!membro) return res.status(404).json({error: "Membro não foi criado"});
         if(orcamento.membro_responsavel_id===1) return res.status(400).json
         ({error: "O admin inicial não pode ser responsável por um orçamento!"});
@@ -33,9 +38,20 @@ class ControleOrcamentos{
                     id:novoOrcamento.id
                 }
             }
-    );
+        );
+        await Orcamentos.update(
+            {
+                cliente: cliente.nome_completo
+            },
+            {
+                where:{
+                    id:novoOrcamento.id
+                }
+            }
+        );
         return res.status(200).json({message: "Orçamento criado com sucesso!"});
     }
+
     async delete(req,res){
 
         if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para deletar um orçamento!"});
@@ -76,12 +92,20 @@ class ControleOrcamentos{
         
         const {descricao_do_projeto,
             membro_responsavel_id,
+            cliente_id,
             valor_estimado,
             custos_previstos,
             status_orcamento
         }=req.body;
         const novo_responsavel =await Membros.findByPk(membro_responsavel_id);
         if(!novo_responsavel) return res.status(404).json({error: "O membro requisitado não existe!"});
+        const NovoCliente=await Membros.findOne({
+            where:{
+                id:orcamento.cliente_id
+            }
+        });
+        if(!NovoCliente) return res.status(404).json({error: "Cliente não foi encontrado!"});
+
         if(membro_responsavel_id===1) return res.status(400).json
         ({error: "O admin inicial não pode ser responsável por um orçamento!"});
         await Orcamentos.update({

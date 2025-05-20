@@ -27,6 +27,10 @@ module.exports = {
           key: 'id'
         },
       },
+      cliente:{
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       cliente_id:{
         type: Sequelize.INTEGER,
         allowNull: false,
