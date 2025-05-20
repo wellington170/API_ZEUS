@@ -1,5 +1,6 @@
 const Orcamentos=require('../models/orcamento');
 const Membros=require('../models/membros');
+const Clientes=require('../models/clientes');
 const verificaAdm=require('../../utils/verificaAdm');
 class ControleOrcamentos{
 
@@ -13,7 +14,7 @@ class ControleOrcamentos{
                 id:orcamento.membro_responsavel_id
             }
         });
-        const cliente=await Membros.findOne({
+        const cliente=await Clientes.findOne({
             where:{
                 id:orcamento.cliente_id
             }
@@ -79,7 +80,8 @@ class ControleOrcamentos{
                 'valor_estimado',
                 'custos_previstos',
                 'status_orcamento',
-                'cliente_id'
+                'cliente_id',
+                'cliente',
             ]
         });
         return res.status(200).json({data: orcamentos});
@@ -97,18 +99,24 @@ class ControleOrcamentos{
             custos_previstos,
             status_orcamento
         }=req.body;
-        const novo_responsavel =await Membros.findByPk(membro_responsavel_id);
-        if(!novo_responsavel) return res.status(404).json({error: "O membro requisitado não existe!"});
-        const NovoCliente=await Membros.findOne({
-            where:{
-                id:orcamento.cliente_id
-            }
-        });
-        if(!NovoCliente) return res.status(404).json({error: "Cliente não foi encontrado!"});
-
-        if(membro_responsavel_id===1) return res.status(400).json
-        ({error: "O admin inicial não pode ser responsável por um orçamento!"});
-        await Orcamentos.update({
+        if(membro_responsavel_id){
+            const verifyMembro=await Membros.findOne({
+                where:{
+                    id:membro_responsavel_id
+                }
+            });
+            if(!verifyMembro) return res.status(404).json({error: "O membro requisitado não existe!"});
+            if(membro_responsavel_id===1) return res.status(400).json({error: "O admin inicial não pode ser responsável por um orçamento!"});
+        }
+        if(cliente_id){
+            const verifyCliente=await Clientes.findOne({
+                where:{
+                    id:cliente_id
+                }
+            });
+            if(!verifyCliente) return res.status(404).json({error: "O cliente requisitado não existe!"});
+        }
+        const orcamentoUpdated = await Orcamentos.update({
             descricao_do_projeto: descricao_do_projeto||orcamento.descricao_do_projeto,
             membro_responsavel_id: membro_responsavel_id||orcamento.membro_responsavel_id,
             valor_estimado: valor_estimado||orcamento.valor_estimado,
@@ -118,16 +126,30 @@ class ControleOrcamentos{
         {
             where: {id: id}
         });
-        await Orcamentos.update(
-            {
-                membro_responsavel: novo_responsavel.nome_completo
-            },
-            {
-                where:{
-                    id:id
+        if(membro_responsavel_id){
+            await Orcamentos.update(
+                {
+                    membro_responsavel: orcamentoUpdated.nome_completo
+                },
+                {
+                    where:{
+                        id:id
+                    }
                 }
-            }
-        );
+            );
+        }
+        if(cliente_id){
+            await Orcamentos.update(
+                {
+                    cliente: orcamentoUpdated.cliente
+                },
+                {
+                    where:{
+                        id:id
+                    }
+                }
+            );
+        }
         return res.status(200).json({message: "Orçamento atualizado com sucesso!"});
        }
 }
