@@ -7,6 +7,7 @@ class orcamentos extends Model{
             numero_do_orcamento: Sequelize.INTEGER,
             descricao_do_projeto: Sequelize.STRING,
             cliente: Sequelize.STRING,
+            membro_responsavel: Sequelize.STRING,
             membro_responsavel_id: Sequelize.INTEGER,
             valor_estimado: Sequelize.STRING,
             custos_previstos: Sequelize.STRING,

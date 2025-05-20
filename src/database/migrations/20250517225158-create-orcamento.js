@@ -19,6 +19,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+        membro_responsavel:{
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       membro_responsavel_id:{
         type: Sequelize.INTEGER,
         allowNull: false,
