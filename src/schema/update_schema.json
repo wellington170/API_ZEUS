@@ -24,7 +24,16 @@
       "enum": ["Masculino", "Feminino", "Outro"]
     },
     "cargo": {
-      "type": "string"
+      "type": "string",
+      "enum": ["Desenvolvedor Backend", "Desenvolvedor Frontend", 
+      "Designer", "Desenvolvedor Mobile",
+      "Product Owner", "Analista de infraestrutura", 
+      "Gestão de Pessoas", "Diretor de Projetos", 
+      "Diretor de Marketing","Diretoria Comercial",
+      "Acessor de Vendas", "Gerente de Vendas",
+      "VPGG", "Diretor de Infraestrutura",
+      "Diretor de Design","Marketing","Gestão de pessoas",
+      "Presidência"]
     },
     "telefone": {
       "type": "string",
