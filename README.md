@@ -115,7 +115,7 @@ src/
     ```
 3. **Crie um .env com os seguintes valores na raíz do projeto**
 ```
-=3001
+PORT=3001
 DIALECT=mysql
 HOST=localhost
 DB_USERNAME=root
