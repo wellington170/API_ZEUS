@@ -4,6 +4,7 @@ const Membro=require('../models/membros');
 const {encrypt}=require('../../utils/crypt');
 const { setResetCode, getResetCode, deleteResetCode }=require('../../utils/resetPassword');
 const {enviaCodigo}=require('../../utils/envioEmail');
+const verificaBloqueio=require('../../utils/verificaBloqueio');
 class AuthenticationController{
     async authenticate(req, res){
         const {email_institucional,password}=req.body;
@@ -17,38 +18,30 @@ class AuthenticationController{
         if(user.password_hash===null){
             return res.status(400).json({error: 'Você precisa criar a sua senha!'});
         }
-        if(user.usuario_bloqueado && ((new Date() - user.data_bloqueio)>(15*60*1000))){
-            await Membro.update(
-                {
-                usuario_bloqueado: false,
-                numero_tentativas: 0,
-                data_bloqueio: null
-                },
-                {
-                where: {id:user.id}
-                }
-            );
-        }
-        if(user.usuario_bloqueado) return res.status(403).json({error: 'Conta temporariamente bloqueada!'});
+        verificaBloqueio(user.id);
+        if(user.usuario_bloqueado) return res.status(403).json
+        ({error: 'Conta temporariamente bloqueada!'});
         
         if(!await user.checkPassword(password)){
-
-            await Membro.update({
-                numero_tentativas: user.numero_tentativas+1
-            },
-            {
-                where: {id:user.id}
-            });
-            if(user.numero_tentativas>=4){
+            if(user.id!=1){
                 await Membro.update({
-                usuario_bloqueado: true,
-                data_bloqueio: new Date()
+                    numero_tentativas: user.numero_tentativas+1
                 },
                 {
-                where: {id:user.id}
-                });
+                    where: {id:user.id}
+            });
+                if(user.numero_tentativas>=4){
+                    await Membro.update({
+                        usuario_bloqueado: true,
+                        data_bloqueio: new Date()
+                    },
+                    {
+                        where: {id:user.id}
+                    });
+                }
             }
             return res.status(401).json({error: 'Senha incorreta!'});
+            
         }
 
         if(user.numero_tentativas!=0){
@@ -70,17 +63,19 @@ class AuthenticationController{
     }
 
     async fistAuthenticate(req, res){
-         const {email_institucional,password, confirm_password}=req.body;
-         const user=await Membro.findOne({
+        const {email_institucional,password, confirm_password}=req.body;
+        const user=await Membro.findOne({
             where: {email_institucional},
         });
         if(!user) {
             return res.status(401).json({error: 'Email não cadastrado!'});
         }
         
-        if(user.password_hash!=null) return res.status(400).json({error: "Membro já tem senha cadastrada!"});
+        if(user.password_hash!=null) return res.status(400).json
+        ({error: "Membro já tem senha cadastrada!"});
         let encryptedPassword='';
-        if(password!=confirm_password) return res.status(401).json({error: "As senhas estão diferentes!"});
+        if(password!=confirm_password) return res.status(401).json
+        ({error: "As senhas estão diferentes!"});
         
         encryptedPassword=await bcryptjs.hash(password, 8);
         user.update({password_hash: encryptedPassword});
@@ -94,10 +89,16 @@ class AuthenticationController{
             }
         });
         if(!user) return res.status(401).json({error: 'Email não cadastrado!'});
-        if(new_password!=confirm_password) return res.status(400).json({error: 'As senhas não coincidem!'});
+        if(new_password!=confirm_password) return res.status(400).json
+        ({error: 'As senhas não coincidem!'});
+
+        verificaBloqueio(user.id);
+        if(user.usuario_bloqueado) return res.status(403).json
+        ({error: 'Conta temporariamente bloqueada!'});
 
         const codigoSalvo=getResetCode(email_institucional);
-        if (!codigoSalvo || codigoSalvo !== codigo) return res.status(400).json({ error: 'Código inválido ou expirado!' });
+        if (!codigoSalvo || codigoSalvo !== codigo) return res.status(400).json
+        ({ error: 'Código inválido ou expirado!' });
   
         const encryptedPassword = await bcryptjs.hash(new_password, 8);
         await user.update({ password_hash: encryptedPassword });
@@ -115,19 +116,9 @@ class AuthenticationController{
             }
         });
         if(!user) return res.status(401).json({error: 'Email não cadastrado!'});
-        if(user.usuario_bloqueado && ((new Date() - user.data_bloqueio)>(15*60*1000))){
-            await Membro.update(
-                {
-                usuario_bloqueado: false,
-                numero_tentativas: 0,
-                data_bloqueio: null
-                },
-                {
-                where: {id:user.id}
-                }
-            );
-        }
-        if(user.usuario_bloqueado) return res.status(403).json({error: 'Conta temporariamente bloqueada!'});
+        verificaBloqueio(user.id);
+        if(user.usuario_bloqueado) return res.status(403).json
+        ({error: 'Conta temporariamente bloqueada!'});
         const code = Math.floor(100000 + Math.random() * 900000).toString();
         setResetCode(email_institucional, code);
 
