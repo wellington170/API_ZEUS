@@ -19,7 +19,8 @@ criados e atualizados por um administrador.
 - Escolhi o MySQL por ser um banco relacional que garante integridade e consistência dos dados, facilitando o gerenciamento dos relacionamentos entre membros e orçamentos. Além disso, tem boa performance e integração eficiente com o Sequelize.
 
 ## 📁 Estrutura do Projeto
-- src/
+```
+src/
 ├── apps/                     # Camada de aplicação
 │   ├── controllers/          # Lógica das rotas (request/response)
 │   ├── middlewares/          # Middlewares para autenticação e validação
@@ -30,6 +31,7 @@ criados e atualizados por um administrador.
 ├── utils/                    # Funções utilitárias
 ├── routes.js                 # Definição e organização das rotas principais
 ├── server.js                 # Ponto de entrada do servidor
+```
 
 ## ⚙️ Funcionalidades
 - Relação com um banco de dados relacional
@@ -49,7 +51,7 @@ criados e atualizados por um administrador.
 ## 🛣 Principais Rotas
 
 ### Autenticação
--   POST /login  
+    -  POST /login  
     Realiza o login do usuário com validação dos dados.
 
     - POST /primeiro_login  
@@ -66,40 +68,40 @@ criados e atualizados por um administrador.
 
 #### Usuário
 
-- PUT /user/perfil 
-  Atualiza o perfil do usuário.
+    - PUT /user/perfil 
+    Atualiza o perfil do usuário.
 
-- GET /user/listarOrcamentos  
-  Lista os orçamentos do usuário.
+    - GET /user/listarOrcamentos  
+    Lista os orçamentos do usuário.
 
-- PUT /user/updateOrcamento/:id  
-  Atualiza um orçamento específico do usuário.
+    - PUT /user/updateOrcamento/:id  
+    Atualiza um orçamento específico do usuário.
 
 #### Administração (ADM)
 
-- POST /adm/create  
-  Cria um novo membro com foto.
+    - POST /adm/create  
+    Cria um novo membro com foto.
 
-- GET /adm/listar  
-  Lista todos os membros.
+    - GET /adm/listar  
+    Lista todos os membros.
 
-- DELETE /adm/delete/:id  
-  Remove um membro pelo ID.
+    - DELETE /adm/delete/:id  
+    Remove um membro pelo ID.
 
-- PUT /adm/atualizar/:id  
-  Atualiza dados de um membro.
+    - PUT /adm/atualizar/:id  
+    Atualiza dados de um membro.
 
-- POST /adm/orcamento/create  
-  Cria um novo orçamento.
+    - POST /adm/orcamento/create  
+    Cria um novo orçamento.
 
-- DELETE /adm/orcamento/delete/:id  
-  Remove um orçamento pelo ID.
+    - DELETE /adm/orcamento/delete/:id  
+    Remove um orçamento pelo ID.
 
-- PUT /adm/orcamento/update/:id  
-  Atualiza um orçamento existente.
+    - PUT /adm/orcamento/update/:id  
+    Atualiza um orçamento existente.
 
-- GET /adm/orcamento/listar  
-  Lista todos os orçamentos.
+    - GET /adm/orcamento/listar  
+    Lista todos os orçamentos.
 
 ## 🚀 Como Executar o Projeto
 1. **Clone o repositório**  
