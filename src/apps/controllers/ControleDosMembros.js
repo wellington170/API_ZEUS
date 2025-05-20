@@ -14,7 +14,7 @@ class ControleDosMembros{
             foto,
             habilidades
         } = req.body;
-        if(!user.email_institucional.endsWith("@compjunior.com.br")){
+        if(!email_institucional.endsWith("@compjunior.com.br")){
             return res.status(400).json({error: "O email deve estar no domínio da compjunior!"});
         }
          await Membros.update(
