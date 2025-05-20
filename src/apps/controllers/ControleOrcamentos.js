@@ -62,7 +62,8 @@ class ControleOrcamentos{
                 'membro_responsavel_id',
                 'valor_estimado',
                 'custos_previstos',
-                'status_orcamento'
+                'status_orcamento',
+                'cliente_id'
             ]
         });
         return res.status(200).json({data: orcamentos});

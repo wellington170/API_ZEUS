@@ -15,10 +15,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      cliente:{
-        type: Sequelize.STRING,
-        allowNull: false
-      },
         membro_responsavel:{
         type: Sequelize.STRING,
         allowNull: true
@@ -28,6 +24,14 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'membros', 
+          key: 'id'
+        },
+      },
+      cliente_id:{
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'clientes', 
           key: 'id'
         },
       },

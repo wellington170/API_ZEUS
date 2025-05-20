@@ -1,11 +1,12 @@
 const Sequelize=require('sequelize');
 const Membros=require('../apps/models/membros');
 const Orçamentos=require('../apps/models/orcamento');
+const Clientes=require('../apps/models/clientes');
 const databaseConfig=require("../configs/db");
 
 const createAdm = require('../utils/createAdm');
 
-const models=[Membros, Orçamentos];
+const models=[Membros, Orçamentos, Clientes];
 class Database{
     constructor(){
         this.init();
