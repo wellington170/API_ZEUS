@@ -8,7 +8,8 @@
       "format": "email"
     },
     "new_password":{
-        "type": "string"
+        "type": "string",
+        "minimum": 8
     },
     "confirm_password":{
         "type":"string"

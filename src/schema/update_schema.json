@@ -4,10 +4,12 @@
   "type": "object",
   "properties": {
     "habilidades":{
-      "type": "string"
+      "type": "string",
+      "minLength": 3
     },
     "nome_completo": {
-      "type": "string"
+      "type": "string",
+      "minLength": 3
     },
     "data_de_ingresso": {
       "type": "string",
@@ -18,13 +20,16 @@
       "format": "email"
     },
     "genero": {
-      "type": "string"
+      "type": "string",
+      "enum": ["Masculino", "Feminino", "Outro"]
     },
     "cargo": {
       "type": "string"
     },
     "telefone": {
-      "type": "string"
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 15
     },
     "administrador": {
       "type": "string"

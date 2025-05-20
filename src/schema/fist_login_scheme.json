@@ -8,10 +8,13 @@
       "format": "email"
     },
     "password":{
-        "type": "string"
+        "type": "string",
+        "minimum": 8
     },
     "confirm_password":{
-        "type":"string"
+        "type":"string",
+        "minimum": 8
+        
     }
 },
   "required": ["email_institucional","password", "confirm_password"]

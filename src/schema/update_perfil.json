@@ -4,20 +4,25 @@
   "type": "object",
   "properties": {
     "habilidades":{
-      "type": "string"
+      "type": "string",
+      "minLength": 3
     },
     "nome_completo": {
-      "type": "string"
+      "type": "string",
+      "minLength": 3
     },
     "email_institucional": {
       "type": "string",
       "format": "email"
     },
     "genero": {
-      "type": "string"
+      "type": "string",
+      "enum": ["Masculino", "Feminino", "Outro"]
     },
     "telefone": {
-      "type": "string"
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 15
     }
   }
 }

@@ -16,6 +16,8 @@ const createOrcamentoSchema=require('./schema/create_orcamento.json');
 const updateOrcamentosSchema=require('./schema/update_orcamento.json');
 const updatePerfilSchema=require('./schema/update_perfil.json');
 const updateOrcamentoUserSchema=require('./schema/update_orcamento_user.json');
+const createClienteSchema=require('./schema/create_cliente_schema.json');
+const updateClienteSchema=require('./schema/update_cliente_schema.json');
 const routes= new Router();
 const {upload, verificaErroMulter}=require('./configs/multer');
 
@@ -39,10 +41,10 @@ routes.delete('/adm/delete/:id', ControleDeMembros.delete);
 routes.put('/adm/atualizar/:id', upload.single('foto'),
 schemaValidator(updateSchema), verificaErroMulter, ControleDeMembros.update);
 
-routes.post('/adm/clientes/create', ControleClientes.create);
+routes.post('/adm/clientes/create', schemaValidator(createClienteSchema),ControleClientes.create);
 routes.delete('/adm/clientes/delete/:id', ControleClientes.delete);
 routes.get('/adm/clientes/listar', ControleClientes.listar);
-routes.put('/adm/clientes/update/:id', ControleClientes.update);
+routes.put('/adm/clientes/update/:id', schemaValidator(updateClienteSchema),ControleClientes.update);
 
 routes.post('/adm/orcamento/create',schemaValidator(createOrcamentoSchema), ControleOrcamentos.create);
 routes.delete('/adm/orcamento/delete/:id', ControleOrcamentos.delete);
