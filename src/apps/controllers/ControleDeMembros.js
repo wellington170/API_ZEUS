@@ -23,8 +23,8 @@ class ControleDeMembros{
         if(!user.email_institucional.endsWith("@compjunior.com.br")){
             return res.status(400).json({error: "O email deve estar no domínio da compjunior!"});
         }
-        if(req.body.administrador==="true"||req.body.administrador=="1") req.body.administrador=true;
-        else if(req.body.administrador==="false"||req.body.administrador=="1") req.body.administrador=false;
+        if(req.body.administrador==="Sim") req.body.administrador=true;
+        else if(req.body.administrador==="Não") req.body.administrador=false;
 
         if(!req.file) return res.status(400).json({ error: "A foto é obrigatória e deve ser JPG, JPEG ou PNG com até 2MB." });
         user.foto=req.file.filename;
@@ -73,8 +73,8 @@ class ControleDeMembros{
         const user=await Membros.findByPk(id);
         if(!user)  return res.status(404).json({error: "Membro não foi criado"});
         if(id==1) return res.status(403).json({error: "Você não pode alterar o administrador inicial!"});
-        if(req.body.administrador==="true"||req.body.administrador=="1") req.body.administrador=true;
-        else if(req.body.administrador==="false"||req.body.administrador=="1") req.body.administrador=false;
+        if(req.body.administrador==="Sim") req.body.administrador=true;
+        else if(req.body.administrador==="Não") req.body.administrador=false;
         const{nome_completo,
             email_institucional,
             cargo,
