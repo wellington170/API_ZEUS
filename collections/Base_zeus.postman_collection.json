@@ -26,7 +26,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"numero_do_orcamento\":20001,\r\n  \"descricao_do_projeto\": \"Desenvolvimento de Plataforma Web para Gestão Escolar\",\r\n  \"cliente\": \"Colégio Alfa\",\r\n  \"membro_responsavel_id\": 1,\r\n  \"valor_estimado\": \"50000\",\r\n  \"custos_previstos\": \"35000\",\r\n  \"status_orcamento\": \"Em análise\"\r\n}",
+									"raw": "{\r\n  \"numero_do_orcamento\":20001,\r\n  \"descricao_do_projeto\": \"Desenvolvimento de Plrma Web para Gestão Escolar\",\r\n  \"cliente\": \"Colégio Alfa\",\r\n  \"membro_responsavel_id\": 2,\r\n  \"valor_estimado\": \"50000\",\r\n  \"custos_previstos\": \"35000\",\r\n  \"status_orcamento\": \"Em análise\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -63,7 +63,7 @@
 									"raw": "{\r\n  \"numero_do_orcamento\":2025001,\r\n  \"descricao_do_projeto\": \"Desenvolvimento de Plataforma Web para Gestão Escolar\",\r\n  \"cliente\": \"Colégio Alfa\",\r\n  \"membro_responsavel_id\": 4,\r\n  \"valor_estimado\": \"50000\",\r\n  \"custos_previstos\": \"35000\",\r\n  \"status_orcamento\": \"Em análise\"\r\n}"
 								},
 								"url": {
-									"raw": "{{API_URL}}/adm/orcamento/delete/3",
+									"raw": "{{API_URL}}/adm/orcamento/delete/1",
 									"host": [
 										"{{API_URL}}"
 									],
@@ -71,7 +71,7 @@
 										"adm",
 										"orcamento",
 										"delete",
-										"3"
+										"1"
 									]
 								}
 							},
@@ -115,7 +115,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"numero_do_orcamento\":3224243,\r\n    \"descricao_do_projeto\": \"sdfsdfsdfsd\",\r\n    \"membro_responsavel_id\":2,\r\n    \"valor_estimado\": \"3423\",\r\n    \"custos_previstos\": \"23424\",\r\n    \"status_orcamento\": \"Em análise\"\r\n}",
+									"raw": "{\r\n  \"descricao_do_projeto\": \"Desenvolvimento de sistema de gestão de clientes\",\r\n  \"cliente\": \"Empresa XYZ\",\r\n  \"valor_estimado\": \"3423.50\",\r\n  \"custos_previstos\": \"2342.00\",\r\n  \"status_orcamento\": \"Em análise\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -123,7 +123,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{API_URL}}/adm/orcamento/update/1",
+									"raw": "{{API_URL}}/adm/orcamento/update/3",
 									"host": [
 										"{{API_URL}}"
 									],
@@ -131,7 +131,7 @@
 										"adm",
 										"orcamento",
 										"update",
-										"1"
+										"3"
 									]
 								}
 							},
@@ -325,7 +325,7 @@
 										},
 										{
 											"key": "email_institucional",
-											"value": "djwnjne@compjunior.com.br",
+											"value": "waldemiro.neto@compjunior.com.br",
 											"type": "text"
 										}
 									]
@@ -349,7 +349,7 @@
 			]
 		},
 		{
-			"name": "Authentication",
+			"name": "Autenticação",
 			"item": [
 				{
 					"name": "Login",
@@ -365,7 +365,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email_institucional\": \"adm@compjunior.com.br\",\r\n    \"password\": \"admin123\"\r\n\r\n}",
+							"raw": "{\r\n    \"email_institucional\": \"adm@compjunior.com.br\",\r\n    \"password\": \"admin123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -391,7 +391,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email_institucional\": \"wellington.pereira@compjunior.com.br\",\r\n    \"password\": \"we.comp.76\",\r\n    \"confirm_password\": \"we.comp.76\"\r\n}",
+							"raw": "{\r\n    \"email_institucional\": \"wellington@compjunior.com.br\",\r\n    \"password\": \"we.comp.76\",\r\n    \"confirm_password\": \"we.comp.76\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -457,7 +457,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email_institucional\": \"wellington.pereira@compjunior.com.br\",\r\n    \"codigo\":\"727746\",\r\n    \"new_password\":\"Wereja7702\",\r\n    \"confirm_password\":\"Wereja7702\"\r\n}",
+							"raw": "{\r\n    \"email_institucional\": \"wellington.pereira@compjunior.com.br\",\r\n    \"codigo\":\"904428\",\r\n    \"new_password\":\"Wereja7702\",\r\n    \"confirm_password\":\"Wereja7702\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -481,40 +481,126 @@
 			]
 		},
 		{
-			"name": "Health",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {}
-			},
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{token}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{API_URL}}/health",
-					"host": [
-						"{{API_URL}}"
-					],
-					"path": [
-						"health"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": "",
-							"disabled": true
+			"name": "Usuário",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/user/listarOrcamentos",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"listarOrcamentos"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Perfil",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nome_completo",
+									"value": "Wellington Costa",
+									"type": "text"
+								},
+								{
+									"key": "email_institucional",
+									"value": "wellington.pereira@compjunior.com.br",
+									"type": "text"
+								},
+								{
+									"key": "telefone",
+									"value": "35988012608",
+									"type": "text"
+								},
+								{
+									"key": "genero",
+									"value": "Masculino",
+									"type": "text"
+								},
+								{
+									"key": "habilidades",
+									"value": "Nenhuma",
+									"type": "text"
+								},
+								{
+									"key": "foto",
+									"type": "file",
+									"src": "postman-cloud:///1f032cf2-f1c0-4570-9b96-c800ad68a6d4"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/user/perfil",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"perfil"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orçamentos",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao_do_projeto\": \"\",\r\n    \"valor_estimado\": 50000,\r\n    \"custos_previstos\":10000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/user/updateOrcamento/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"updateOrcamento",
+								"2"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
