@@ -14,14 +14,18 @@
     },
     "telefone": {
       "type": "string",
-      "minLength":8,
-      "maxLength": 15
+      "minLength":11,
+      "maxLength": 14
 
     },
     "cpf_cnpj": {
       "type": "string",
-      "minLength": 11,
+      "minLength": 14,
       "maxLength": 18
+    },
+    "endereco": {
+      "type": "string",
+      "minLength": 5
     }
   },
     "required": ["nome",
