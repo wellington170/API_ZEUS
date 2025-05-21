@@ -117,7 +117,6 @@ src/
 
 #### Administração (ADM)
 
-- CRUD membros
     - POST /adm/create  
     Cria um novo membro com foto.
 
@@ -129,7 +128,7 @@ src/
 
     - PUT /adm/atualizar/:id  
     Atualiza dados de um membro.
-- CRUD orçamentos
+
     - POST /adm/orcamento/create  
     Cria um novo orçamento.
 
@@ -141,7 +140,7 @@ src/
 
     - GET /adm/orcamento/listar  
     Lista todos os orçamentos.
-- CRUD clientes
+
     - POST /adm/clientes/create
     - DELETE /adm/clientes/delete/:id
     - PUT /adm/clientes/update/:id
