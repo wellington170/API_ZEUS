@@ -91,13 +91,10 @@ src/
 ### Autenticação
     -  POST /login  
     Realiza o login do usuário com validação dos dados.
-
     - POST /primeiro_login  
     Autenticação inicial para usuários no primeiro acesso.
-
     - POST /login/recuperacao_de_senha/codigo  
     Envia ou valida código para recuperação de senha.
-
     - PUT /login/recuperacao_de_senha/reset  
     Redefine a senha após validação do código.
 
@@ -108,10 +105,8 @@ src/
 
     - PUT /user/perfil 
     Atualiza o perfil do usuário.
-
     - GET /user/listarOrcamentos  
     Lista os orçamentos do usuário.
-
     - PUT /user/updateOrcamento/:id  
     Atualiza um orçamento específico do usuário.
 
@@ -119,32 +114,30 @@ src/
 
     - POST /adm/create  
     Cria um novo membro com foto.
-
     - GET /adm/listar  
     Lista todos os membros.
-
     - DELETE /adm/delete/:id  
     Remove um membro pelo ID.
-
     - PUT /adm/atualizar/:id  
     Atualiza dados de um membro.
 
     - POST /adm/orcamento/create  
     Cria um novo orçamento.
-
     - DELETE /adm/orcamento/delete/:id  
     Remove um orçamento pelo ID.
-
     - PUT /adm/orcamento/update/:id  
     Atualiza um orçamento existente.
-
     - GET /adm/orcamento/listar  
     Lista todos os orçamentos.
 
     - POST /adm/clientes/create
+    Cria um cliente.
     - DELETE /adm/clientes/delete/:id
+    Deleta um cliente pelo ID.
     - PUT /adm/clientes/update/:id
+    Atualiza um cliente
     - GET /adm/clientes/listar
+    Lista todos os clientes
 
 ## 🛠️ Pré-requisitos
 - MySQL instalado e rodando(caso rode com docker, pare o MYSQL antes de rodar as imagens)
