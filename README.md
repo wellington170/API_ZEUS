@@ -69,6 +69,12 @@ src/
     - Verifica se o usuário logado é um administrador
 - verificaBloqueio.js
     - Verifica se o tempo de bloqueio do usuário já expirou
+- verificaCpfCnpj.js
+    - Verifica se o formato do CPF/CNPJ está de acordo com XXX.XXX.XXX.XX ou XX.XXX.XXX/XXXX-XX
+        - fonte: https://irias.com.br/blog/como-validar-cpf-cnpj-em-node-js/
+- verificaTelefone.js
+    - Verifica se o telefone é válido e o formato do número, aceitando (xx)xxxxx-xxxx ou xxxxxxxxxxx
+        - fonte: https://gist.github.com/jonathangoncalves/7bdec924e9bd2bdf353d6b7520820b62
 
 ## ⚙️ Funcionalidades
 - Relação com um banco de dados relacional
@@ -178,7 +184,7 @@ EMAIL_PASS=axyy bpah yyyo ybbo
 docker-compose up --build
 ```
 5. O projeto será executado em http://localhost:3001
-6. Teste as rotas no Postman
+6. Teste as rotas no Postman, os endpoints estão disponíveis dentro da pasta collections, na raíz do projeto
 
 ## ⚠️ Dificuldades
 - Entendimento de algumas tecnologias como nodemailer, multer e bcryptjs
