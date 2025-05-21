@@ -23,8 +23,8 @@ criados e atualizados por um administrador.
 src/
 ├── apps/                     # Camada de aplicação
 │   ├── controllers/          # Lógica das rotas (request/response)
-│   ├── middlewares/          # Middlewares para autenticação e validação
-│   └── models/               # Modelos de dados de membros e orçamentos
+│   ├── middlewares/          # Middlewares para autenticação e validação de schema
+│   └── models/               # Modelos de dados de membros, clientes e orçamentos
 ├── configs/                  # Configurações do projeto como db.js, emailConfig.js e multer.js
 ├── database/                 # Conexão com banco de dados e migrations
 ├── schema/                   # Validações JSON
@@ -32,6 +32,43 @@ src/
 ├── routes.js                 # Definição e organização das rotas principais
 ├── server.js                 # Ponto de entrada do servidor
 ```
+
+## 🎮 Explicação dos Controllers
+- Autencicação.js
+    - Responsável pelos serviços de login, sendo suas funções:
+        - authenticate -> faz o login com email e senha
+        - firstAuthenticate -> faz o primeiro login com email, senha, e confirma_senha
+        - reset -> reseta a senha, pedindo o código, email, senha e confirma_senha
+        - codigo -> envia o código de confirmação pelo email
+- ControleCliente.js
+    - CRUD completo dos clientes(somente administradores)
+- ControleDeMembros.js 
+    - CRUD completo dos membros(somente administradores)
+- ControleDosMembros.js
+    - Somente acessado por um membro logado e tem as seguintes funções:
+        - updateMembro -> altera informações do próprio perfil
+        - listar -> lista os orçamentos que o membro é responsável
+        - updateOrcamento -> altera informações dos próprios orçamentos
+- ControleOrcamentos.js
+    - CRUD completo dos orçamentos(somente administradores)
+- FileController.js
+    - Faz upload das fotos
+
+## 🔑 Explicação dos utils
+- createAdm.js
+    - Cria o administrador inicial com email: adm@compjunior.com.br e senha: admin123
+- crypt.js
+    - Encripta e desencripta dados, no caso, a função é usada para criptografar o ID do usuário
+- envioEmail.js
+    - Usa o nodemail para enviar um email padrão de recuperação de senha
+- resetPassword.js
+    - Gerencia códigos de redefinição de senha
+- token.js
+    - Valida e decodifica um token JWT recebido no header Authorization
+- verificaAdm.js 
+    - Verifica se o usuário logado é um administrador
+- verificaBloqueio.js
+    - Verifica se o tempo de bloqueio do usuário já expirou
 
 ## ⚙️ Funcionalidades
 - Relação com um banco de dados relacional
@@ -43,6 +80,7 @@ src/
     - Administrador
         - CRUD completo de membros
         - CRUD completo de orçamentos de projeto
+        - CRUD completo de clientes
     - Usuários
         - Listar orçamentos que está responsável
         - Atualizar informações do seu perfil
@@ -79,6 +117,7 @@ src/
 
 #### Administração (ADM)
 
+- CRUD membros
     - POST /adm/create  
     Cria um novo membro com foto.
 
@@ -90,7 +129,7 @@ src/
 
     - PUT /adm/atualizar/:id  
     Atualiza dados de um membro.
-
+- CRUD orçamentos
     - POST /adm/orcamento/create  
     Cria um novo orçamento.
 
@@ -102,6 +141,18 @@ src/
 
     - GET /adm/orcamento/listar  
     Lista todos os orçamentos.
+- CRUD clientes
+    - POST /adm/clientes/create
+    - DELETE /adm/clientes/delete/:id
+    - PUT /adm/clientes/update/:id
+    - GET /adm/clientes/listar
+
+## 🛠️ Pré-requisitos
+- MySQL instalado e rodando(caso rode com docker, pare o MYSQL antes de rodar as imagens)
+- Node.js intalado com versão 16 ou superior
+- NPM (Gerenciador de pacotes do node.js)
+- GIT Para clonar o repositório
+- Docker (opcional, caso prefira rodar a aplicação em containers)
 
 ## 🚀 Como Executar o Projeto
 1. **Clone o repositório**  
