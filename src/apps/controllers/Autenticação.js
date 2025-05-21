@@ -125,10 +125,11 @@ class AuthenticationController{
             if (!user) return res.status(401).json({ error: 'Email não cadastrado!' });
             verificaBloqueio(user.id);
             if (user.usuario_bloqueado) return res.status(403).json({ error: 'Conta temporariamente bloqueada!' });
+            if(user.id === 1) return res.status(403).json({ error: 'Você não pode redefinir a senha do administrador inicial!' });
             const code = Math.floor(100000 + Math.random() * 900000).toString();
-            setResetCode(email_institucional, code);
+            setResetCode( email_institucional, code);
             try{
-            await enviaCodigo(email_institucional, code);
+            await enviaCodigo(user.nome_completo,email_institucional, code);
             return res.status(200).json({ message: 'Código enviado para o email.' });
             } catch (err) {
                 return res.status(500).json({ error: 'Erro ao enviar email.' });
