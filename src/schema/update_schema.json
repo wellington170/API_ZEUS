@@ -26,14 +26,11 @@
     "cargo": {
       "type": "string",
       "enum": ["Desenvolvedor Backend", "Desenvolvedor Frontend", 
-      "Designer", "Desenvolvedor Mobile",
-      "Product Owner", "Analista de infraestrutura", 
-      "Gestão de Pessoas", "Diretor de Projetos", 
-      "Diretor de Marketing","Diretoria Comercial",
-      "Acessor de Vendas", "Gerente de Vendas",
-      "VPGG", "Diretor de Infraestrutura",
-      "Diretor de Design","Marketing","Gestão de pessoas",
-      "Presidência"]
+      "Designer","Desenvolvedor Mobile", "Diretor Comercial", "VPGG", "Gerente de Recrutamento",
+      "Gerente de Pessoas", "Gerente de Cultura", "Presidente","Infraestrutura",
+      "Gerente Financeiro","Diretor de Projetos","Gerente de Projetos",
+      "Gerente de Qualidades", "Acessor de Gestão de Pessoas",
+      "Acessor de Vendas","Acessor de Marketing","Product Owner"]
     },
     "telefone": {
       "type": "string",
