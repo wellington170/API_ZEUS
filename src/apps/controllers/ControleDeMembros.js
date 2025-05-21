@@ -1,5 +1,6 @@
 const Membros=require('../models/membros');
 const Orcamentos=require('../models/orcamento');
+const verificaTelefone=require('../../utils/verificaTelefone');
 const  verificaAdm=require('../../utils/verificaAdm');
 class ControleDeMembros{
     
@@ -28,6 +29,8 @@ class ControleDeMembros{
 
             if (!req.file) return res.status(400).json({ error: "A foto é obrigatória e deve ser JPG, JPEG ou PNG com até 2MB." });
             user.foto = req.file.filename;
+            if(!verificaTelefone(user.telefone)) return res.status(400).json
+            ({ error: "Telefone inválido ou não está no formato: (xx)xxxxx-xxxx ou xxxxxxxxxxx)" });
             await Membros.create(req.body);
             return res.status(200).json({ message: "Membro criado com sucesso!" });
         } catch (err) {
@@ -99,6 +102,9 @@ class ControleDeMembros{
             if (!user.email_institucional.endsWith("@compjunior.com.br")) {
                 return res.status(400).json({ error: "O email deve estar no domínio da compjunior!" });
             }
+            if(!verificaTelefone(telefone)) return res.status(400).json
+            ({ error: "Telefone inválido ou não está no formato: (xx)xxxxx-xxxx ou xxxxxxxxxxx)" });
+            
             await Membros.update(
                 {
                     nome_completo: nome_completo || user.nome_completo,

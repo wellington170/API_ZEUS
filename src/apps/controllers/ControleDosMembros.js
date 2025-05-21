@@ -1,5 +1,6 @@
 const Orcamentos=require('../models/orcamento');
 const Membros=require('../models/membros');
+const verificaTelefone=require('../../utils/verificaTelefone');
 
 class ControleDosMembros{
     async updateMembro(req,res){
@@ -19,7 +20,8 @@ class ControleDosMembros{
             if (!email_institucional.endsWith("@compjunior.com.br")) {
                 return res.status(400).json({ error: "O email deve estar no domínio da compjunior!" });
             }
-
+            if(!verificaTelefone(telefone)) return res.status(400).json
+            ({ error: "Telefone inválido ou não está no formato: (xx)xxxxx-xxxx ou xxxxxxxxxxx)" });
             await Membros.update(
                 {
                     nome_completo: nome_completo || user.nome_completo,
