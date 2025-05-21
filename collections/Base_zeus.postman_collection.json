@@ -26,7 +26,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"numero_do_orcamento\":20001,\r\n  \"descricao_do_projeto\": \"Desenvolvimento de Plrma Web para Gestão Escolar\",\r\n  \"cliente\": \"Colégio Alfa\",\r\n  \"membro_responsavel_id\": 2,\r\n  \"valor_estimado\": \"50000\",\r\n  \"custos_previstos\": \"35000\",\r\n  \"status_orcamento\": \"Em análise\"\r\n}",
+									"raw": "{\r\n  \"numero_do_orcamento\":20201,\r\n  \"descricao_do_projeto\": \"Desenvolvimento de Plrma Web para Gestão Escolar\",\r\n  \"cliente\": \"Colégio Alfa\",\r\n  \"membro_responsavel_id\": 2,\r\n  \"cliente_id\":2,\r\n  \"valor_estimado\": \"50000\",\r\n  \"custos_previstos\": \"35000\",\r\n  \"status_orcamento\": \"Em análise\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -115,7 +115,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"descricao_do_projeto\": \"Desenvolvimento de sistema de gestão de clientes\",\r\n  \"cliente\": \"Empresa XYZ\",\r\n  \"valor_estimado\": \"3423.50\",\r\n  \"custos_previstos\": \"2342.00\",\r\n  \"status_orcamento\": \"Em análise\"\r\n}",
+									"raw": "{\r\n  \"membro_responsavel_id\":2,\r\n  \"cliente_id\":1,\r\n  \"descricao_do_projeto\": \"Desenvolvimento de sistema de gestão de clientes\",\r\n  \"cliente\": \"Empresa XYZ\",\r\n  \"valor_estimado\": \"3423.50\",\r\n  \"custos_previstos\": \"2342.00\",\r\n  \"status_orcamento\": \"Em análise\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -123,7 +123,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{API_URL}}/adm/orcamento/update/3",
+									"raw": "{{API_URL}}/adm/orcamento/update/1",
 									"host": [
 										"{{API_URL}}"
 									],
@@ -131,7 +131,7 @@
 										"adm",
 										"orcamento",
 										"update",
-										"3"
+										"1"
 									]
 								}
 							},
@@ -320,12 +320,17 @@
 										},
 										{
 											"key": "administrador",
-											"value": "false",
+											"value": "Sim",
 											"type": "text"
 										},
 										{
 											"key": "email_institucional",
 											"value": "waldemiro.neto@compjunior.com.br",
+											"type": "text"
+										},
+										{
+											"key": "habilidades",
+											"value": "",
 											"type": "text"
 										}
 									]
@@ -338,6 +343,130 @@
 									"path": [
 										"adm",
 										"atualizar",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Clientes",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Ana Silva\",\r\n  \"cpf_cnpj\": \"123.456.789-00\",\r\n  \"email\": \"ana.silva@example.com\",\r\n  \"telefone\": \"11987654321\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/adm/clientes/create",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"adm",
+										"clientes",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/adm/clientes/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"adm",
+										"clientes",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/adm/clientes/listar",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"adm",
+										"clientes",
+										"listar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nome\": \"Carlos Oliveira\",\r\n  \"cpf_cnpj\": \"45.678.912/0001-34\",\r\n  \"email\": \"carlos.oliveira@yopmail.com\",\r\n  \"telefone\": \"21998765432\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/adm/clientes/update/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"adm",
+										"clientes",
+										"update",
 										"2"
 									]
 								}
@@ -579,7 +708,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao_do_projeto\": \"\",\r\n    \"valor_estimado\": 50000,\r\n    \"custos_previstos\":10000\r\n}",
+							"raw": "{\r\n    \"descricao_do_projeto\": \"Descrição exemplo\",\r\n    \"valor_estimado\": \"50000\",\r\n    \"custos_previstos\":\"10000\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
