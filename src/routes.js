@@ -5,6 +5,7 @@ const AuthenticationController=require('./apps/controllers/Autenticação');
 const ControleOrcamentos=require('./apps/controllers/ControleOrcamentos');
 const ControleDosMembros=require('./apps/controllers/ControleDosMembros');
 const ControleClientes=require('./apps/controllers/ControleClientes');
+
 const schemaValidator=require('./apps/middlewares/schemaValidator');
 const membroSchema=require('./schema/create_membro.json');
 const loginSchema=require('./schema/login_scheme.json');
@@ -18,6 +19,7 @@ const updatePerfilSchema=require('./schema/update_perfil.json');
 const updateOrcamentoUserSchema=require('./schema/update_orcamento_user.json');
 const createClienteSchema=require('./schema/create_cliente_schema.json');
 const updateClienteSchema=require('./schema/update_cliente_schema.json');
+
 const routes= new Router();
 const {upload, verificaErroMulter}=require('./configs/multer');
 
