@@ -367,7 +367,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"nome\": \"Ana Silva\",\r\n  \"cpf_cnpj\": \"123.456.789-00\",\r\n  \"email\": \"ana.silva@example.com\",\r\n  \"telefone\": \"11987654321\"\r\n}",
+									"raw": "{\r\n  \"nome\": \"Ana Silva\",\r\n  \"cpf_cnpj\": \"121.307.776.19\",\r\n  \"email\": \"ana.silva@example.com\",\r\n  \"telefone\": \"(35)3221-6013\",\r\n  \"endereco\": \"Rua José Orlando Bueno, 390. Eldorado\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -451,7 +451,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"nome\": \"Carlos Oliveira\",\r\n  \"cpf_cnpj\": \"45.678.912/0001-34\",\r\n  \"email\": \"carlos.oliveira@yopmail.com\",\r\n  \"telefone\": \"21998765432\"\r\n}",
+									"raw": "{\r\n  \"nome\": \"Carlos Oliveira\",\r\n  \"endereco\": \"Rua Araxás, 798\",\r\n  \"email\": \"carlos.oliveira@yopmail.com\",\r\n  \"telefone\": \"99999999999\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -459,7 +459,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{API_URL}}/adm/clientes/update/2",
+									"raw": "{{API_URL}}/adm/clientes/update/9",
 									"host": [
 										"{{API_URL}}"
 									],
@@ -467,7 +467,7 @@
 										"adm",
 										"clientes",
 										"update",
-										"2"
+										"9"
 									]
 								}
 							},
@@ -486,7 +486,7 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Authorization",
+								"key": "",
 								"value": "",
 								"type": "text",
 								"disabled": true
@@ -520,7 +520,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email_institucional\": \"wellington@compjunior.com.br\",\r\n    \"password\": \"we.comp.76\",\r\n    \"confirm_password\": \"we.comp.76\"\r\n}",
+							"raw": "{\r\n    \"email_institucional\": \"wellington.pereira@compjunior.com.br\",\r\n    \"password\": \"we.comp.76\",\r\n    \"confirm_password\": \"we.comp.76\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -545,9 +545,10 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "Bearer {{token}}",
-								"type": "text"
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -662,7 +663,7 @@
 								},
 								{
 									"key": "telefone",
-									"value": "35988012608",
+									"value": "99999999999",
 									"type": "text"
 								},
 								{
