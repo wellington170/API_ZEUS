@@ -11,4 +11,4 @@ COPY . .
 
 EXPOSE 3001
 
-CMD ["./wait-for-it.sh", "db:3306", "--", "yarn", "dev"]
+CMD ["./wait-for-it.sh", "db:3306", "--", "sh", "-c", "yarn migrate && yarn dev"]

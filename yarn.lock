@@ -1197,7 +1197,7 @@ seq-queue@^0.0.5:
 
 sequelize-cli@^6.6.3:
   version "6.6.3"
-  resolved "https://registry.npmjs.org/sequelize-cli/-/sequelize-cli-6.6.3.tgz"
+  resolved "https://registry.yarnpkg.com/sequelize-cli/-/sequelize-cli-6.6.3.tgz#faf041e009b6c0d30d84d290e6c4d485ac8cacbd"
   integrity sha512-1YYPrcSRt/bpMDDSKM5ubY1mnJ2TEwIaGZcqITw4hLtGtE64nIqaBnLtMvH8VKHg6FbWpXTiFNc2mS/BtQCXZw==
   dependencies:
     fs-extra "^9.1.0"
