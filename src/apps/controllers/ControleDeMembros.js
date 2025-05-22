@@ -6,7 +6,9 @@ class ControleDeMembros{
     
     async create(req, res){
         try {
-            if (!await verificaAdm(req.userId)) return res.status(400).json({ error: "Você não tem permissão para criar um usuário" });
+            if (!await verificaAdm(req.userId)) return res.status(400).json
+            ({ error: "Você não tem permissão para criar um usuário" });
+
             const verificaMembro = await Membros.findOne({
                 where: {
                     email_institucional: req.body.email_institucional,
@@ -27,7 +29,9 @@ class ControleDeMembros{
             if (req.body.administrador === "Sim") req.body.administrador = true;
             else if (req.body.administrador === "Não") req.body.administrador = false;
 
-            if (!req.file) return res.status(400).json({ error: "A foto é obrigatória e deve ser JPG, JPEG ou PNG com até 2MB." });
+            if (!req.file) return res.status(400).json
+            ({ error: "A foto é obrigatória e deve ser JPG, JPEG ou PNG com até 2MB." });
+
             user.foto = req.file.filename;
             if(!verificaTelefone(user.telefone)) return res.status(400).json
             ({ error: "Telefone inválido ou não está no formato: (xx)xxxxx-xxxx ou xxxxxxxxxxx)" });
@@ -40,7 +44,9 @@ class ControleDeMembros{
 
     async listar(req,res){
         try {
-            if (!await verificaAdm(req.userId)) return res.status(400).json({ error: "Você não tem permissão para acessar todos os usuários" });
+            if (!await verificaAdm(req.userId)) return res.status(400).json
+            ({ error: "Você não tem permissão para acessar todos os usuários" });
+
             const usuarios = await Membros.findAll({
                 order: [['nome_completo', 'ASC']],
                 attributes: ['id',
@@ -57,7 +63,9 @@ class ControleDeMembros{
     }
     async delete(req, res){
         try {
-            if (!await verificaAdm(req.userId)) return res.status(400).json({ error: "Você não tem permissão para deletar um usuário" });
+            if (!await verificaAdm(req.userId)) return res.status(400).json
+            ({ error: "Você não tem permissão para deletar um usuário" });
+
             const { id } = req.params;
             const user = await Membros.findByPk(id);
             if (!user) return res.status(404).json({ error: "Membro não foi criado" });
@@ -68,7 +76,9 @@ class ControleDeMembros{
                     membro_responsavel_id: id
                 }
             });
-            if (userOrcamentos) return res.status(403).json({ error: "Você não pode deletar um usuário que é responsável por um orçamento" });
+            if (userOrcamentos) return res.status(403).json
+            ({ error: "Você não pode deletar um usuário que é responsável por um orçamento" });
+
 
             await Membros.destroy({
                 where: {
@@ -82,7 +92,9 @@ class ControleDeMembros{
     }
     async update(req,res){
         try {
-            if (!await verificaAdm(req.userId)) return res.status(400).json({ error: "Você não tem permissão para alterar um usuário" });
+            if (!await verificaAdm(req.userId)) return res.status(400).json
+            ({ error: "Você não tem permissão para alterar um usuário" });
+            
             const { id } = req.params;
             const user = await Membros.findByPk(id);
             if (!user) return res.status(404).json({ error: "Membro não foi criado" });

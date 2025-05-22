@@ -81,7 +81,9 @@ class ControleOrcamentos{
     }
        async listar(req, res){
         try{
-            if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para acessar todos os orçamentos!"});
+            if(!await verificaAdm(req.userId)) return res.status(400).json
+            ({error: "Você não tem permissão para acessar todos os orçamentos!"});
+
             const orcamentos=await Orcamentos.findAll({
                 order:[['id', 'DESC']],
                 attributes: ['id',
@@ -123,7 +125,9 @@ class ControleOrcamentos{
                         id:membro_responsavel_id
                     }
                 });
-                if(!verifyMembro) return res.status(404).json({error: "O membro requisitado não existe!"});
+                if(!verifyMembro) return res.status(404).json
+                ({error: "O membro requisitado não existe!"});
+
                 if(membro_responsavel_id===1) return res.status(400).json
                 ({error: "O admin inicial não pode ser responsável por um orçamento!"});
             }
@@ -133,7 +137,8 @@ class ControleOrcamentos{
                         id:cliente_id
                     }
                 });
-                if(!verifyCliente) return res.status(404).json({error: "O cliente requisitado não existe!"});
+                if(!verifyCliente) return res.status(404).json
+                ({error: "O cliente requisitado não existe!"});
             }
             const orcamentoUpdated = await Orcamentos.update({
                 descricao_do_projeto: descricao_do_projeto||orcamento.descricao_do_projeto,

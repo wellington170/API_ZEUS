@@ -7,7 +7,9 @@ const verificaTelefone=require('../../utils/verificaTelefone');
 class ControleOrcamentos{
     async create(req,res){
         try {
-            if (!await verificaAdm(req.userId)) return res.status(400).json({ error: "Você não tem permissão para criar um cliente!" });
+            if (!await verificaAdm(req.userId)) return res.status(400).json
+            ({ error: "Você não tem permissão para criar um cliente!" });
+
             const verifyCliente = await Clientes.findOne({
                 where: {
                     email: req.body.email,
@@ -27,7 +29,9 @@ class ControleOrcamentos{
     }
     async delete(req,res){
         try {
-            if (!await verificaAdm(req.userId)) return res.status(400).json({ error: "Você não tem permissão para deletar um cliente!" });
+            if (!await verificaAdm(req.userId)) return res.status(400).json
+            ({ error: "Você não tem permissão para deletar um cliente!" });
+
             const { id } = req.params;
             const cliente = await Clientes.findByPk(id);
             if (!cliente) return res.status(404).json({ error: "Cliente não foi encontrado" });
@@ -36,7 +40,9 @@ class ControleOrcamentos{
                     cliente_id: id
                 }
             });
-            if (clienteOrcamentos) return res.status(403).json({ error: "Cliente não pode ser deletado, pois possui orçamentos vinculados!" });
+            if (clienteOrcamentos) return res.status(403).json
+            ({ error: "Cliente não pode ser deletado, pois possui orçamentos vinculados!" });
+
             await Clientes.destroy({
                 where: {
                     id: id
@@ -50,7 +56,9 @@ class ControleOrcamentos{
 
     async listar(req,res){
          try {
-            if (!await verificaAdm(req.userId)) return res.status(400).json({ error: "Você não tem permissão para acessar todos os usuários" });
+            if (!await verificaAdm(req.userId)) return res.status(400).json
+            ({ error: "Você não tem permissão para acessar todos os usuários" });
+
             const clientes = await Clientes.findAll({
                 order: [['nome', 'ASC']],
                 attributes: ['id',
@@ -67,7 +75,9 @@ class ControleOrcamentos{
     }
     async update(req,res){
         try {
-            if (!await verificaAdm(req.userId)) return res.status(400).json({ error: "Você não tem permissão para atualizar um cliente!" });
+            if (!await verificaAdm(req.userId)) return res.status(400).json
+            ({ error: "Você não tem permissão para atualizar um cliente!" });
+            
             const { id } = req.params;
             const cliente = await Clientes.findByPk(id);
             if (!cliente) return res.status(404).json({ error: "Cliente não foi encontrado" });

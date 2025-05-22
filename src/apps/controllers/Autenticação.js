@@ -98,13 +98,16 @@ class AuthenticationController{
                 }
             });
             if (!user) return res.status(401).json({ error: 'Email não cadastrado!' });
-            if (new_password != confirm_password) return res.status(400).json({ error: 'As senhas não coincidem!' });
+            if (new_password != confirm_password) return res.status(400).json
+            ({ error: 'As senhas não coincidem!' });
 
             verificaBloqueio(user.id);
-            if (user.usuario_bloqueado) return res.status(403).json({ error: 'Conta temporariamente bloqueada!' });
+            if (user.usuario_bloqueado) return res.status(403).json
+            ({ error: 'Conta temporariamente bloqueada!' });
 
             const codigoSalvo = getResetCode(email_institucional);
-            if (!codigoSalvo || codigoSalvo !== codigo) return res.status(400).json({ error: 'Código inválido ou expirado!' });
+            if (!codigoSalvo || codigoSalvo !== codigo) return res.status(400).json
+            ({ error: 'Código inválido ou expirado!' });
 
             const encryptedPassword = await bcryptjs.hash(new_password, 8);
             await user.update({ password_hash: encryptedPassword });
@@ -133,7 +136,7 @@ class AuthenticationController{
 
             if(user.id === 1) return res.status(403).json
             ({ error: 'Você não pode redefinir a senha do administrador inicial!' });
-            
+
             const code = Math.floor(100000 + Math.random() * 900000).toString();
             setResetCode( email_institucional, code);
             try{
