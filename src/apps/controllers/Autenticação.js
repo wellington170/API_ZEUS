@@ -14,13 +14,15 @@ class AuthenticationController{
                 where: { email_institucional },
             });
             if (!user) {
-                return res.status(401).json({ error: 'Email não cadastrado!' });
+                return res.status(401).json
+                ({ error: 'Email não cadastrado!' });
             }
             if (user.password_hash === null) {
                 return res.status(400).json({ error: 'Você precisa criar a sua senha!' });
             }
             verificaBloqueio(user.id);
-            if (user.usuario_bloqueado) return res.status(403).json({ error: 'Conta temporariamente bloqueada!' });
+            if (user.usuario_bloqueado) return res.status(403).json
+            ({ error: 'Conta temporariamente bloqueada!' });
 
             if (!await user.checkPassword(password)) {
                 if (user.id != 1) {
@@ -71,13 +73,14 @@ class AuthenticationController{
             const user = await Membro.findOne({
                 where: { email_institucional },
             });
-            if (!user) {
-                return res.status(401).json({ error: 'Email não cadastrado!' });
-            }
+            if (!user) return res.status(401).json({ error: 'Email não cadastrado!' });
+            
 
-            if (user.password_hash != null) return res.status(400).json({ error: "Membro já tem senha cadastrada!" });
+            if (user.password_hash != null) return res.status(400).json
+            ({ error: "Membro já tem senha cadastrada!" });
             let encryptedPassword = '';
-            if (password != confirm_password) return res.status(401).json({ error: "As senhas estão diferentes!" });
+            if (password != confirm_password) return res.status(401).json
+            ({ error: "As senhas estão diferentes!" });
 
             encryptedPassword = await bcryptjs.hash(password, 8);
             await user.update({ password_hash: encryptedPassword });
@@ -124,8 +127,13 @@ class AuthenticationController{
             });
             if (!user) return res.status(401).json({ error: 'Email não cadastrado!' });
             verificaBloqueio(user.id);
-            if (user.usuario_bloqueado) return res.status(403).json({ error: 'Conta temporariamente bloqueada!' });
-            if(user.id === 1) return res.status(403).json({ error: 'Você não pode redefinir a senha do administrador inicial!' });
+
+            if (user.usuario_bloqueado) return res.status(403).json
+            ({ error: 'Conta temporariamente bloqueada!' });
+
+            if(user.id === 1) return res.status(403).json
+            ({ error: 'Você não pode redefinir a senha do administrador inicial!' });
+            
             const code = Math.floor(100000 + Math.random() * 900000).toString();
             setResetCode( email_institucional, code);
             try{

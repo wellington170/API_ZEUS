@@ -6,7 +6,8 @@ class ControleDosMembros{
     async updateMembro(req,res){
         try {
             const user = await Membros.findByPk(req.userId);
-            if (req.userId == 1) return res.status(403).json({ error: "O Administrador inicial não pode ser alterado" });
+            if (req.userId == 1) return res.status(403).json
+            ({ error: "O Administrador inicial não pode ser alterado" });
 
             const {
                 nome_completo,
@@ -17,11 +18,12 @@ class ControleDosMembros{
                 habilidades
             } = req.body;
 
-            if (!email_institucional.endsWith("@compjunior.com.br")) {
-                return res.status(400).json({ error: "O email deve estar no domínio da compjunior!" });
-            }
+            if (!email_institucional.endsWith("@compjunior.com.br")) return res.status(400).json
+            ({ error: "O email deve estar no domínio da compjunior!" });
+            
             if(!verificaTelefone(telefone)) return res.status(400).json
             ({ error: "Telefone inválido ou não está no formato: (xx)xxxxx-xxxx ou xxxxxxxxxxx)" });
+
             await Membros.update(
                 {
                     nome_completo: nome_completo || user.nome_completo,
@@ -42,7 +44,8 @@ class ControleDosMembros{
     }
     async listar(req, res){
         try {
-            if (req.userId == 1) return res.status(403).json({ error: "O administrador inicial não é responsável por nenhum orçamento!" });
+            if (req.userId == 1) return res.status(403).json
+            ({ error: "O administrador inicial não é responsável por nenhum orçamento!" });
             const orcamentos = await Orcamentos.findAll({
                 where: { membro_responsavel_id: req.userId }
             });
@@ -55,7 +58,9 @@ class ControleDosMembros{
 
     async updateOrcamento(req,res){
         try {
-            if (req.userId == 1) return res.status(403).json({ error: "O administrador inicial não é responsável por nenhum orçamento!" });
+            if (req.userId == 1) return res.status(403).json
+            ({ error: "O administrador inicial não é responsável por nenhum orçamento!" });
+            
             const { id } = req.params;
             const orcamento = await Orcamentos.findOne({
                 where: { id: id, membro_responsavel_id: req.userId }

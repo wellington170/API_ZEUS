@@ -8,12 +8,12 @@ class ControleOrcamentos{
     async create(req,res){
         try {
             if (!await verificaAdm(req.userId)) return res.status(400).json({ error: "Você não tem permissão para criar um cliente!" });
-            const verifyUser = await Clientes.findOne({
+            const verifyCliente = await Clientes.findOne({
                 where: {
                     email: req.body.email,
                 },
             });
-            if (verifyUser) return res.status(400).json({ message: "Cliente já existe" });
+            if (verifyCliente) return res.status(400).json({ message: "Cliente já existe" });
             const {cpf_cnpj, telefone}=req.body;
             if(!verificaCpfCnpj(cpf_cnpj)) return res.status(400).json
             ({ error: "CPF/CNPJ inválido, coloque no formato: XXX.XXX.XXX.XX ou XX.XXX.XXX/XXXX-XX" });

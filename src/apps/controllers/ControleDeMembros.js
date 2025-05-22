@@ -7,12 +7,12 @@ class ControleDeMembros{
     async create(req, res){
         try {
             if (!await verificaAdm(req.userId)) return res.status(400).json({ error: "Você não tem permissão para criar um usuário" });
-            const verifyUser = await Membros.findOne({
+            const verificaMembro = await Membros.findOne({
                 where: {
                     email_institucional: req.body.email_institucional,
                 },
             });
-            if (verifyUser) {
+            if (verificaMembro) {
                 return res.status(400).json({ message: "Membro já existe" });
             }
 

@@ -6,7 +6,8 @@ class ControleOrcamentos{
 
     async create(req, res){
         try{
-            if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para criar um orçamento!"});
+            if(!await verificaAdm(req.userId)) return res.status(400).json
+            ({error: "Você não tem permissão para criar um orçamento!"});
 
             const{numero_do_orcamento}=req.body;
             const orcamento=req.body;
@@ -22,13 +23,16 @@ class ControleOrcamentos{
             });
             if(!cliente) return res.status(404).json({error: "Cliente não foi encontrado!"});
             if(!membro) return res.status(404).json({error: "Membro não foi criado"});
+
             if(orcamento.membro_responsavel_id===1) return res.status(400).json
             ({error: "O admin inicial não pode ser responsável por um orçamento!"});
+
             const verifyOrcamento=await Orcamentos.findOne({
                 where:{
                     numero_do_orcamento: numero_do_orcamento,
                 }
             });
+
             if(verifyOrcamento ) return res.status(400).json({error: "Número do orçamento já existe!"});
             const novoOrcamento = await Orcamentos.create(req.body);
             await Orcamentos.update(
@@ -58,7 +62,9 @@ class ControleOrcamentos{
 }
     async delete(req,res){
         try{
-            if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para deletar um orçamento!"});
+            if(!await verificaAdm(req.userId)) return res.status(400).json
+            ({error: "Você não tem permissão para deletar um orçamento!"});
+
             const {id}=req.params;
             const orcamento=await Orcamentos.findByPk(id);
             if(!orcamento) return res.status(404).json({error: "O orçamento solicitado não existe"});
@@ -97,7 +103,9 @@ class ControleOrcamentos{
        }
        async update(req, res){
         try{    
-            if(!await verificaAdm(req.userId)) return res.status(400).json({error: "Você não tem permissão para alterar um orçamento"});
+            if(!await verificaAdm(req.userId)) return res.status(400).json
+            ({error: "Você não tem permissão para alterar um orçamento"});
+
             const {id}=req.params;
             const orcamento=await Orcamentos.findByPk(id);
             if(!orcamento) return res.status(404).json({error: "O orçamento solicitado não existe"});
@@ -116,7 +124,8 @@ class ControleOrcamentos{
                     }
                 });
                 if(!verifyMembro) return res.status(404).json({error: "O membro requisitado não existe!"});
-                if(membro_responsavel_id===1) return res.status(400).json({error: "O admin inicial não pode ser responsável por um orçamento!"});
+                if(membro_responsavel_id===1) return res.status(400).json
+                ({error: "O admin inicial não pode ser responsável por um orçamento!"});
             }
             if(cliente_id){
                 const verifyCliente=await Clientes.findOne({
