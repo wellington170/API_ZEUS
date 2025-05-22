@@ -19,8 +19,16 @@ class ControleOrcamentos{
             const {cpf_cnpj, telefone}=req.body;
             if(!verificaCpfCnpj(cpf_cnpj)) return res.status(400).json
             ({ error: "CPF/CNPJ inválido, coloque no formato: XXX.XXX.XXX.XX ou XX.XXX.XXX/XXXX-XX" });
+            const verificaCpfRepetido = await Clientes.findOne({
+                where: {
+                    cpf_cnpj: cpf_cnpj,
+                },
+            });
+            if(verificaCpfRepetido) return res.status(400).json
+            ({ error: "CPF/CNPJ já está cadastrado!" });
             if(!verificaTelefone(telefone)) return res.status(400).json
             ({ error: "Telefone inválido ou não está no formato: (xx)xxxxx-xxxx ou xxxxxxxxxxx)" });
+
             await Clientes.create(req.body);
             return res.status(200).json({ message: "Cliente criado com sucesso!" });
         } catch (err) {
