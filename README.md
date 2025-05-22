@@ -166,7 +166,7 @@ src/
 ```
 PORT=3001
 DIALECT=mysql
-HOST=localhost
+HOST=db
 DB_USERNAME=root
 PASSWORD=root
 DATABASE=base_zeus
@@ -185,7 +185,19 @@ docker-compose up --build
 ```
 5. O projeto será executado em http://localhost:3001
 6. Teste as rotas no Postman, os endpoints estão disponíveis dentro da pasta collections, na raíz do projeto
-
+7. Caso um erro como:
+```
+api_zeus    | /usr/bin/env: use -[v]S to pass options in shebang lines                                    
+api_zeus    | /usr/bin/env: 'bash\r': No such file or directory                                           
+api_zeus    | /usr/bin/env: use -[v]S to pass options in shebang lines                                    
+api_zeus    | /usr/bin/env: 'bash\r': No such file or directory                                           
+api_zeus    | /usr/bin/env: use -[v]S to pass options in shebang lines
+api_zeus    | /usr/bin/env: 'bash\r': No such file or directory                                           
+api_zeus exited with code 127          
+```
+apareça, vá até o arquivo wait-for-it.sh e altere no canto inferior direito o Select End Of Line Sequence do VSCODE, e troque CRLF por LF.
+Este erro ocorre porque as quebras de linha em CRLF estão no formato windows, contudo, o docker executa o arquivo no ambiente linux, logo
+esse mudança se faz necessária
 ## ⚠️ Dificuldades
 - Entendimento de algumas tecnologias como nodemailer, multer e bcryptjs
 
