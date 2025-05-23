@@ -179,6 +179,9 @@ EMAIL_PORT=587
 EMAIL_SECURE=false
 EMAIL_USER=wellingtoncostagrilo2018@gmail.com
 EMAIL_PASS=axyy bpah yyyo ybbo
+CLOUDINARY_CLOUD_NAME=daf6mmhoo
+CLOUDINARY_API_KEY=476123853965722
+CLOUDINARY_API_SECRET=dcujgSQlBXaQPJZjJNuEA7hhOLc
 ```
 5. **Rodar com o Docker**
 ```bash
