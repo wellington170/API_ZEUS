@@ -14,6 +14,9 @@ criados e atualizados por um administrador.
 - [bcrypt.js](https://github.com/kelektiv/node.bcrypt.js/)
 - [nodemailer](https://nodemailer.com/)
 - [Multer](https://github.com/expressjs/multer)
+- [Cloudinary](https://cloudinary.com/)
+- [streamifier](https://www.npmjs.com/package/streamifier)
+
 
 ## 🎲 Escolha do Banco de Dados
 - Escolhi o MySQL por ser um banco relacional que garante integridade e consistência dos dados, facilitando o gerenciamento dos relacionamentos entre membros e orçamentos. Além disso, tem boa performance e integração eficiente com o Sequelize.
@@ -34,7 +37,7 @@ src/
 ```
 
 ## 🎮 Explicação dos Controllers
-- Autencicação.js
+- Autenticação.js
     - Responsável pelos serviços de login, sendo suas funções:
         - authenticate -> faz o login com email e senha
         - firstAuthenticate -> faz o primeiro login com email, senha, e confirma_senha
@@ -51,8 +54,6 @@ src/
         - updateOrcamento -> altera informações dos próprios orçamentos
 - ControleOrcamentos.js
     - CRUD completo dos orçamentos(somente administradores)
-- FileController.js
-    - Faz upload das fotos
 
 ## 🔑 Explicação dos utils
 - createAdm.js
