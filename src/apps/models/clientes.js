@@ -8,7 +8,12 @@ class Clientes extends Model{
             cpf_cnpj:Sequelize.STRING,
             email: Sequelize.STRING,
             telefone: Sequelize.STRING,
-            endereco: Sequelize.STRING
+            cep: Sequelize.STRING,
+            rua: Sequelize.STRING,
+            bairro: Sequelize.STRING,
+            cidade: Sequelize.STRING,
+            estado: Sequelize.STRING,
+            numero: Sequelize.STRING,
         },{
             sequelize
         });

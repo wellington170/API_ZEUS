@@ -15,7 +15,27 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      endereco: {
+      cep: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      rua: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      bairro: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      cidade: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      estado: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      numero: {
         type: Sequelize.STRING,
         allowNull: false
       },
