@@ -2,6 +2,8 @@ const Membros=require('../models/membros');
 const Orcamentos=require('../models/orcamento');
 const verificaTelefone=require('../../utils/verificaTelefone');
 const  verificaAdm=require('../../utils/verificaAdm');
+const cloudinary = require('../../configs/cloudinary');
+const streamifier = require('streamifier');
 class ControleDeMembros{
     
     async create(req, res){
@@ -15,7 +17,7 @@ class ControleDeMembros{
                 },
             });
             if (verificaMembro) {
-                return res.status(400).json({ message: "Membro já existe" });
+                return res.status(400).json({ error: "Membro já existe" });
             }
 
             const dataAtual = new Date();
@@ -29,14 +31,34 @@ class ControleDeMembros{
             if (req.body.administrador === "Sim") req.body.administrador = true;
             else if (req.body.administrador === "Não") req.body.administrador = false;
 
-            if (!req.file) return res.status(400).json
-            ({ error: "A foto é obrigatória e deve ser JPG, JPEG ou PNG com até 2MB." });
+            const buffer = req.file.buffer;
+            const uploadStream = cloudinary.uploader.upload_stream(
+            {
+                folder: 'uploads',
+                resource_type: 'image',
+                transformation: [{ width: 500, height: 500, crop: 'limit' }]
+            },
+            async (error, result) => {
+                if (error) {
+                    return res.status(500).json
+                    ({ error: 'Erro ao fazer upload para o Cloudinary!', details: error.message });
+                }
 
-            user.foto = req.file.filename;
-            if(!verificaTelefone(user.telefone)) return res.status(400).json
-            ({ error: "Telefone inválido ou não está no formato: (xx)xxxxx-xxxx ou xxxxxxxxxxx)" });
-            await Membros.create(req.body);
-            return res.status(200).json({ message: "Membro criado com sucesso!" });
+                user.foto = result.secure_url;  
+
+                if (!verificaTelefone(user.telefone)) {
+                    return res.status(400).json
+                    ({ error: "Telefone inválido ou não está no formato: (xx)xxxxx-xxxx ou xxxxxxxxxxx)" });
+                }
+
+                await Membros.create(user);
+
+                return res.status(200).json({ message: "Membro criado com sucesso!"});
+            }
+        );
+
+            streamifier.createReadStream(buffer).pipe(uploadStream);
+
         } catch (err) {
             return res.status(500).json({ error: "Erro interno no servidor!" });
         }
@@ -54,6 +76,7 @@ class ControleDeMembros{
                     'data_de_nascimento',
                     'cargo',
                     'telefone',
+                    'foto',
                     'email_institucional']
             });
             return res.status(200).json({ data: usuarios });
@@ -105,7 +128,6 @@ class ControleDeMembros{
                 nome_completo,
                 email_institucional,
                 cargo,
-                foto,
                 telefone,
                 administrador,
                 genero,
@@ -116,13 +138,34 @@ class ControleDeMembros{
             }
             if(!verificaTelefone(telefone)) return res.status(400).json
             ({ error: "Telefone inválido ou não está no formato: (xx)xxxxx-xxxx ou xxxxxxxxxxx)" });
-            
+            let foto = user.foto;
+            if (req.file) {
+                const buffer = req.file.buffer;
+
+                const uploadResult = await new Promise((resolve, reject) => {
+                    const uploadStream = cloudinary.uploader.upload_stream(
+                        {
+                            folder: 'uploads',
+                            resource_type: 'image',
+                            transformation: [{ width: 500, height: 500, crop: 'limit' }],
+                        },
+                        (error, result) => {
+                            if (error) reject(error);
+                            else resolve(result);
+                        }
+                    );
+
+                    streamifier.createReadStream(buffer).pipe(uploadStream);
+                });
+
+            foto = uploadResult.secure_url;  
+        }
             await Membros.update(
                 {
                     nome_completo: nome_completo || user.nome_completo,
                     email_institucional: email_institucional || user.email_institucional,
                     cargo: cargo || user.cargo,
-                    foto: foto || user.foto,
+                    foto: foto,
                     telefone: telefone || user.telefone,
                     administrador: administrador ?? user.administrador,
                     genero: genero || user.genero,
