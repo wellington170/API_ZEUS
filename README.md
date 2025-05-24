@@ -210,5 +210,5 @@ apareça, vá até o arquivo wait-for-it.sh e altere no canto inferior direito o
 Este erro ocorre porque as quebras de linha em CRLF estão no formato windows, contudo, o docker executa o arquivo no ambiente linux, logo
 esse mudança se faz necessária
 ## ⚠️ Dificuldades
-- Entendimento de algumas tecnologias como nodemailer, multer e bcryptjs
+- Entendimento inicial da linguagem JavaScript e suas principais funções
 
