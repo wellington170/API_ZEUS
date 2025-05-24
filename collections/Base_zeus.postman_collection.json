@@ -26,7 +26,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"numero_do_orcamento\":20201,\r\n  \"descricao_do_projeto\": \"Desenvolvimento de Plrma Web para Gestão Escolar\",\r\n  \"cliente\": \"Colégio Alfa\",\r\n  \"membro_responsavel_id\": 2,\r\n  \"cliente_id\":2,\r\n  \"valor_estimado\": \"50000\",\r\n  \"custos_previstos\": \"35000\",\r\n  \"status_orcamento\": \"Em análise\"\r\n}",
+									"raw": "{\r\n  \"numero_do_orcamento\":\"20201\",\r\n  \"descricao_do_projeto\": \"Desenvolvimento de Plrma Web para Gestão Escolar\",\r\n  \"cliente\": \"Colégio Alfa\",\r\n  \"membro_responsavel_id\": 3,\r\n  \"cliente_id\":1,\r\n  \"valor_estimado\": \"50000\",\r\n  \"custos_previstos\": \"35000\",\r\n  \"status_orcamento\": \"Em análise\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -301,7 +301,7 @@
 										{
 											"key": "foto",
 											"type": "file",
-											"src": "postman-cloud:///1f032cf2-f1c0-4570-9b96-c800ad68a6d4"
+											"src": "/C:/Users/welli/Downloads/Embrace.png"
 										},
 										{
 											"key": "genero",
@@ -310,12 +310,12 @@
 										},
 										{
 											"key": "cargo",
-											"value": "Vendedor",
+											"value": "VPGG",
 											"type": "text"
 										},
 										{
 											"key": "telefone",
-											"value": "35999999999",
+											"value": "(35)99999-9999",
 											"type": "text"
 										},
 										{
@@ -326,24 +326,26 @@
 										{
 											"key": "email_institucional",
 											"value": "waldemiro.neto@compjunior.com.br",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "habilidades",
 											"value": "",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
 								"url": {
-									"raw": "{{API_URL}}/adm/atualizar/2",
+									"raw": "{{API_URL}}/adm/atualizar/3",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"adm",
 										"atualizar",
-										"2"
+										"3"
 									]
 								}
 							},
@@ -367,7 +369,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"nome\": \"Ana Silva\",\r\n  \"cpf_cnpj\": \"121.307.776.19\",\r\n  \"email\": \"ana.silva@example.com\",\r\n  \"telefone\": \"(35)3221-6013\",\r\n  \"endereco\": \"Rua José Orlando Bueno, 390. Eldorado\"\r\n}",
+									"raw": "{\r\n  \"nome\": \"Ana Silva\",\r\n  \"cpf_cnpj\": \"121.307.776.19\",\r\n  \"email\": \"ana.silva@example.com\",\r\n  \"telefone\": \"(35)3221-6013\",\r\n  \"cep\": \"37062409\",\r\n  \"numero\":\"390\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -451,7 +453,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"nome\": \"Carlos Oliveira\",\r\n  \"endereco\": \"Rua Araxás, 798\",\r\n  \"email\": \"carlos.oliveira@yopmail.com\",\r\n  \"telefone\": \"99999999999\"\r\n}",
+									"raw": "{\r\n  \"nome\": \"Carlos Oliveira\",\r\n  \"email\": \"Carlinhos@yopmail.com\",\r\n  \"telefone\": \"35998022808\",\r\n  \"cep\": \"37062400\",\r\n  \"numero\": \"110\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -459,7 +461,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{API_URL}}/adm/clientes/update/9",
+									"raw": "{{API_URL}}/adm/clientes/update/7",
 									"host": [
 										"{{API_URL}}"
 									],
@@ -467,7 +469,7 @@
 										"adm",
 										"clientes",
 										"update",
-										"9"
+										"7"
 									]
 								}
 							},
@@ -709,7 +711,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao_do_projeto\": \"Descrição exemplo\",\r\n    \"valor_estimado\": \"50000\",\r\n    \"custos_previstos\":\"10000\"\r\n}",
+							"raw": "{\r\n    \"descricao_do_projeto\": \"Descrição exemplo\",\r\n    \"valor_estimado\": \"50000\",\r\n    \"custos_previstos\":\"10000\",\r\n    \"status_orcamento\":\"Aprovado\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -717,14 +719,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{API_URL}}/user/updateOrcamento/2",
+							"raw": "{{API_URL}}/user/updateOrcamento/1",
 							"host": [
 								"{{API_URL}}"
 							],
 							"path": [
 								"user",
 								"updateOrcamento",
-								"2"
+								"1"
 							]
 						}
 					},
