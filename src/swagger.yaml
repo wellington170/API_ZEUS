@@ -1,0 +1,484 @@
+openapi: 3.0.0
+info:
+  title: API ZEUS
+  version: "1.0.0"
+  description: Documentação da API ZEUS
+
+paths:
+  /login:
+    post:
+      summary: Realiza login do usuário
+      tags: [Autenticação]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        200:
+          description: Login realizado com sucesso
+        401:
+          description: Email ou senha inválidos
+
+  /primeiro_login:
+    post:
+      summary: Realiza o primeiro login do usuário
+      tags: [Autenticação]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FirstLogin'
+      responses:
+        200:
+          description: Senha criada com sucesso
+        400:
+          description: Membro já tem senha cadastrada
+
+  /login/recuperacao_de_senha/codigo:
+    post:
+      summary: Envia código de recuperação de senha para o email
+      tags: [Autenticação]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecuperacaoCodigo'
+      responses:
+        200:
+          description: Código enviado para o email
+        401:
+          description: Email não cadastrado
+
+  /login/recuperacao_de_senha/reset:
+    put:
+      summary: Redefine a senha do usuário
+      tags: [Autenticação]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetSenha'
+      responses:
+        200:
+          description: Senha redefinida com sucesso
+        400:
+          description: Código inválido ou expirado
+
+  /user/perfil:
+    put:
+      summary: Atualiza o perfil do usuário autenticado
+      tags: [Usuário]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdatePerfil'
+      responses:
+        200:
+          description: Perfil atualizado com sucesso
+
+  /user/listarOrcamentos:
+    get:
+      summary: Lista os orçamentos do usuário autenticado
+      tags: [Usuário]
+      responses:
+        200:
+          description: Lista de orçamentos
+
+  /user/updateOrcamento/{id}:
+    put:
+      summary: Atualiza um orçamento do usuário autenticado
+      tags: [Usuário]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrcamentoUser'
+      responses:
+        200:
+          description: Orçamento atualizado com sucesso
+
+  /adm/create:
+    post:
+      summary: Cria um novo membro (administrador)
+      tags: [Membros]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateMembro'
+      responses:
+        200:
+          description: Membro criado com sucesso
+
+  /adm/listar:
+    get:
+      summary: Lista todos os membros
+      tags: [Membros]
+      responses:
+        200:
+          description: Lista de membros
+
+  /adm/delete/{id}:
+    delete:
+      summary: Deleta um membro pelo ID
+      tags: [Membros]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Membro deletado com sucesso
+
+  /adm/atualizar/{id}:
+    put:
+      summary: Atualiza um membro pelo ID
+      tags: [Membros]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateMembro'
+      responses:
+        200:
+          description: Membro atualizado com sucesso
+
+  /adm/clientes/create:
+    post:
+      summary: Cria um cliente
+      tags: [Clientes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCliente'
+      responses:
+        200:
+          description: Cliente criado com sucesso
+
+  /adm/clientes/delete/{id}:
+    delete:
+      summary: Deleta um cliente pelo ID
+      tags: [Clientes]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Cliente deletado com sucesso
+
+  /adm/clientes/listar:
+    get:
+      summary: Lista todos os clientes
+      tags: [Clientes]
+      responses:
+        200:
+          description: Lista de clientes
+
+  /adm/clientes/update/{id}:
+    put:
+      summary: Atualiza um cliente pelo ID
+      tags: [Clientes]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCliente'
+      responses:
+        200:
+          description: Cliente atualizado com sucesso
+
+  /adm/orcamento/create:
+    post:
+      summary: Cria um orçamento
+      tags: [Orçamentos]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrcamento'
+      responses:
+        200:
+          description: Orçamento criado com sucesso
+
+  /adm/orcamento/delete/{id}:
+    delete:
+      summary: Deleta um orçamento pelo ID
+      tags: [Orçamentos]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Orçamento deletado com sucesso
+
+  /adm/orcamento/update/{id}:
+    put:
+      summary: Atualiza um orçamento pelo ID
+      tags: [Orçamentos]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrcamento'
+      responses:
+        200:
+          description: Orçamento atualizado com sucesso
+
+  /adm/orcamento/listar:
+    get:
+      summary: Lista todos os orçamentos
+      tags: [Orçamentos]
+      responses:
+        200:
+          description: Lista de orçamentos
+
+components:
+  schemas:
+    Login:
+      type: object
+      properties:
+        email_institucional:
+          type: string
+          example: adm@compjunior.com.br
+        password:
+          type: string
+          example: admin123
+      required:
+        - email_institucional
+        - password
+
+    FirstLogin:
+      type: object
+      properties:
+        email_institucional:
+          type: string
+          example: usuario@compjunior.com.br
+        password:
+          type: string
+          example: usuario123
+        confirm_password:
+          type: string
+          example: usuario123
+      required:
+        - email_institucional
+        - password
+        - confirm_password
+
+    RecuperacaoCodigo:
+      type: object
+      properties:
+        email_institucional:
+          type: string
+          example: usuario@compjunior.com.br
+      required:
+        - email_institucional
+
+    ResetSenha:
+      type: object
+      properties:
+        email_institucional:
+          type: string
+          example: usuario@compjunior.com.br
+        codigo:
+          type: string
+          example: '123456'
+        new_password:
+          type: string
+          example: novasenha123
+        confirm_password:
+          type: string
+          example: novasenha123
+      required:
+        - email_institucional
+        - codigo
+        - new_password
+        - confirm_password
+
+    UpdatePerfil:
+      type: object
+      properties:
+        nome_completo:
+          type: string
+          example: Wellington Costa
+        email_institucional:
+          type: string
+          example: wellington@compjunior.com.br
+        telefone:
+          type: string
+          example: '(11)99802-5767'
+        genero:
+          type: string
+          example: Masculino
+        foto:
+          type: string
+          format: binary
+          example: arquivo.jpg,jpeg ou png até 2MB
+        habilidades:
+          type: string
+          example: Java, Python, JavaScript
+
+    UpdateOrcamentoUser:
+      type: object
+      properties:
+        descricao_do_projeto:
+          type: string
+          example: Sistema de Gestão de Projetos
+        valor_estimado:
+          type: string
+          example: '30000'
+        custos_previstos:
+          type: string
+          example: '1000'
+        status_orcamento:
+          type: string
+          example: Em análise
+
+    CreateMembro:
+      type: object
+      properties:
+        nome_completo:
+          type: string
+          example: Wellington Costa
+        email_institucional:
+          type: string
+          example: wellington.pereira@compjunior.com.br
+        data_de_nascimento:
+          type: string
+          format: date
+          example: 2006-05-05
+        cargo:
+          type: string
+          example: Gerente de Pessoas
+        telefone:
+          type: string
+          example: '35998280208'
+        foto:
+          type: string
+          format: binary
+          example: arquivo.jpg,jpeg ou png até 2MB
+        administrador:
+          type: boolean
+          example: true
+        genero:
+          type: string
+          example: Masculino
+        habilidades:
+          type: string
+          example: C++, Java, Python
+
+    UpdateMembro:
+      allOf:
+        - $ref: '#/components/schemas/CreateMembro'
+
+    CreateCliente:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: Empresa ABC
+        email:
+          type: string
+          example: contato@yopmail.com.br
+        telefone:
+          type: string
+          example: '(11)90000-0000'
+        cpf_cnpj:
+          type: string
+          example: '12.345.678/0001-99'
+        cep:
+          type: string
+          example: '01001000'
+      required:
+        - nome
+        - email
+        - telefone
+        - cpf_cnpj
+        - cep
+
+    UpdateCliente:
+      allOf:
+        - $ref: '#/components/schemas/CreateCliente'
+
+    CreateOrcamento:
+      type: object
+      properties:
+        numero_do_orcamento:
+          type: string
+          example: ORC-2024-001
+        descricao_do_projeto:
+          type: string
+          example: Sistema de gestão de estoque
+        membro_responsavel_id:
+          type: integer
+          example: 2
+        valor_estimado:
+          type: string
+          example: '20000'
+        custos_previstos:
+          type: string
+          example: '12000'
+        status_orcamento:
+          type: string
+          example: Aprovado
+        cliente_id:
+          type: integer
+          example: 1
+      required:
+        - numero_do_orcamento
+        - descricao_do_projeto
+        - membro_responsavel_id
+        - valor_estimado
+        - custos_previstos
+        - status_orcamento
+        - cliente_id
+
+    UpdateOrcamento:
+      allOf:
+        - $ref: '#/components/schemas/CreateOrcamento'

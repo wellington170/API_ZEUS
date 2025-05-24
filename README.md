@@ -16,6 +16,8 @@ criados e atualizados por um administrador.
 - [Multer](https://github.com/expressjs/multer)
 - [Cloudinary](https://cloudinary.com/)
 - [streamifier](https://www.npmjs.com/package/streamifier)
+- [Swagger](https://swagger.io/)
+- [NestJS](https://nestjs.com/)
 
 
 ## 🎲 Escolha do Banco de Dados
@@ -76,6 +78,9 @@ src/
 - verificaTelefone.js
     - Verifica se o telefone é válido e o formato do número, aceitando (xx)xxxxx-xxxx ou xxxxxxxxxxx
         - fonte: https://gist.github.com/jonathangoncalves/7bdec924e9bd2bdf353d6b7520820b62
+- verificaCEP.js
+    - verifica se o CEP existe e preenche os dados: rua, bairro, cidade e estado
+        - fonte: https://viacep.com.br/exemplo/javascript/
 
 ## ⚙️ Funcionalidades
 - Relação com um banco de dados relacional
@@ -94,7 +99,7 @@ src/
         - Atualizar informações de seus orçamentos
 
 ## 🛣 Principais Rotas
-
+- As rotas também estão disponíveis através da documentação do swagger em http://localhost:3001/api-docs
 ### Autenticação
     -  POST /login  
     Realiza o login do usuário com validação dos dados.
