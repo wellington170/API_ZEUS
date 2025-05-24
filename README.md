@@ -34,6 +34,8 @@ src/
 ├── database/                 # Conexão com banco de dados e migrations
 ├── schema/                   # Validações JSON
 ├── utils/                    # Funções utilitárias
+├── swagger.yaml              # Documentação da API no padrão Swagger
+├── swaggerConfig.js          # Configuração do Swagger UI para a documentação
 ├── routes.js                 # Definição e organização das rotas principais
 ├── server.js                 # Ponto de entrada do servidor
 ```
