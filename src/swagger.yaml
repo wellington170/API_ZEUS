@@ -450,8 +450,8 @@ components:
       type: object
       properties:
         numero_do_orcamento:
-          type: string
-          example: ORC-2024-001
+          type: integer
+          example: 123456
         descricao_do_projeto:
           type: string
           example: Sistema de gestão de estoque
